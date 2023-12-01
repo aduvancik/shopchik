@@ -1,0 +1,67 @@
+.header {
+    background-color: #002F34;
+    height: 70px;
+
+
+    &__content{ 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        height: 100%;
+        font-weight: bold;
+        max-width: 1200px;
+        margin: 0px auto;
+    }
+
+    &__logo {
+        color: #23E5DB;
+        font-size: 30px;
+    }
+
+    &__functional {
+        display: flex;
+        gap: 65px;
+
+        color: #fff;
+        font-weight: 800;
+        
+        &_item {
+            display: flex;
+            position: relative;
+            gap: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    }
+    
+    &__icon {
+        color: #fff;
+        width: 20px;
+        height: 20px;
+    }
+
+    .header__functional_item::before{
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-color: #3498db;
+        bottom: -10px;
+        transform: scaleX(0);
+        transition: all .500s ease;
+    }
+
+    .active {
+        color: #3498db;
+        
+        svg {
+            color: #3498db;
+        }
+        &::before {
+            transform: scaleX(1);
+    }
+    }
+}
+

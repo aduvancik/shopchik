@@ -1,0 +1,56 @@
+.product {
+    flex: 1 0 22%;
+    margin: 1%;
+    padding: 10px;
+
+    max-width: 266px;
+    box-sizing: border-box;
+    
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &__img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    &__info {
+      margin-top: 10px;
+    }
+
+      &__infoTitle {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      svg {
+        font-size: 20px;
+        color: #3498db;
+      }
+
+      &__price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2ecc71;
+        margin: 10px 0;
+
+      }
+
+      &__place-data {
+        font-size: 14px;
+        color: #777;
+
+        p {
+          margin: 3px;
+        }
+      }
+  }

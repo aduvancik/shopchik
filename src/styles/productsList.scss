@@ -1,0 +1,24 @@
+.productsList {
+    background-color: #f9f9f9;
+    padding: 20px;
+  
+    .productsList__container {
+      max-width: 1200px;
+      margin: 0 auto;
+  
+      .productsList__title {
+        font-size: 34px;
+        font-weight: bold;
+        margin: 25px 0 20px 0;
+        text-align: center;
+      }
+  
+      .productsList__products {
+        display: flex;
+        flex-wrap: wrap;
+  
+       
+      }
+    }
+  }
+  
