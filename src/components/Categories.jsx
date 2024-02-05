@@ -4,6 +4,10 @@ import CategiriesItem from './CategiriesItem';
 
 const categoriesArr = [
   {
+    title: "Все",
+    alt: "all"
+  },
+  {
     title: "Коти",
     alt: "cat"
   },
@@ -29,7 +33,7 @@ const categoriesArr = [
   },
 ]
 
-export default function Categories() {
+export default function Categories({handleCategoryClick }) {
   return (
     <div className='categories'>
       <p className="categories__title">Категорії</p>
@@ -39,6 +43,7 @@ export default function Categories() {
             key={category.title}
             alt={category.alt}
             title={category.title}
+            handleCategoryClick={handleCategoryClick}
           />
         ))}
       </div>

@@ -9,10 +9,10 @@ export default function Search() {
         <Container gap={50}>
           <Row>
             <Col xs={5}>
-              <input type="text" placeholder="Що шукаєте?" className="search__input" />
+              <input type="text" placeholder="Що шукаєте?" className="search__input input" />
             </Col>
             <Col xs={5}>
-              <input className="search__input" type="text" placeholder="Уся Україна" />
+              <input className="search__input input " type="text" placeholder="Уся Україна" />
             </Col>
             <Col xs={1}>
               <button type="submit">
@@ -55,17 +55,17 @@ export default function Search() {
               </Form.Select>
             </Col>
             <Col>
-              <Form.Select aria-label="Default select example" xs={2}>
+               <Form.Select aria-label="Default select example" xs={2}>
                 <option>Спочатку</option>
                 <option value="1">
-                  <Form.Select aria-label="Default select exampleEE" xs={2}>
+                  {/* <Form.Select aria-label="Default select exampleEE" xs={2}>
                     <option>Спочатку</option>
                     <option value="1">новіші / дорожчі</option>
                     <option value="2">старіші / дешевші</option>
-                  </Form.Select>
+                  </Form.Select> */}
                 </option>
                 <option value="2">старіші / дешевші</option>
-              </Form.Select>
+              </Form.Select> 
             </Col>
           </Row>
         </Container>

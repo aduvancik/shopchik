@@ -1,17 +1,20 @@
-// import Header from '../components/header/Header'
 import Search from '../components/Search'
 import Categories from '../components/Categories'
 import ProductsList from '../components/ProductsList'
+import { useState } from 'react';
 
 export default function HomePages() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+};
+
   return (
       <>
-    {/* <Header /> */}
-    <div style={{maxWidth: "1200px",margin: "0px auto"}}>
     <Search />
-    <Categories />
-    <ProductsList />
-    </div>
+    <Categories handleCategoryClick={handleCategoryClick}/>
+    <ProductsList selectedCategory={selectedCategory}/>
     </>
   )
 }

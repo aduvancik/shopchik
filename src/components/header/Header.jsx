@@ -6,7 +6,7 @@ import { BiMessageAltAdd } from "react-icons/bi";
 //styles
 import "../../styles/header.scss";
 import { Modal } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Header() {
     const [showBasket, setShowBasket] = useState(false);
@@ -18,7 +18,9 @@ export default function Header() {
         <>
             <header className='header'>
                 <div className="header__content">
+                <Link to="/" className="header__functional_item">
                     <div className="header__logo">Shop</div>
+                        </Link>
                     <div className="header__functional">
                         <NavLink to="/" className="header__functional_item">
                             <BsChat className='header__icon' />
@@ -28,7 +30,7 @@ export default function Header() {
                             <BsBasket2 className='header__icon' />
                             <span>Коризна</span>
                         </div>
-                        <NavLink to="/" className="header__functional_item">
+                        <NavLink to="/profile" className="header__functional_item">
                             <MdSupervisorAccount className='header__icon' />
                             <span>Ваш профіль</span>
                         </NavLink>
