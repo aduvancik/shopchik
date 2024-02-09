@@ -1,37 +1,9 @@
-import React from 'react'
+//styled
 import "../styles/categories.scss";
+//components
 import CategiriesItem from './CategiriesItem';
-
-const categoriesArr = [
-  {
-    title: "Все",
-    alt: "all"
-  },
-  {
-    title: "Коти",
-    alt: "cat"
-  },
-  {
-    title: "Собаки",
-    alt: "dog"
-  },
-  {
-    title: "Птахи",
-    alt: "bird"
-  },
-  {
-    title: "Рибки",
-    alt: "fish"
-  },
-  {
-    title: "Гризуни",
-    alt: "rodents"
-  },
-  {
-    title: "Рептилії",
-    alt: "reptiles"
-  },
-]
+//variable
+import { categoriesArr } from '../listProducts';
 
 export default function Categories({handleCategoryClick }) {
   return (

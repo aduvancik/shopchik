@@ -1,18 +1,34 @@
-import { Col, Container, Dropdown, DropdownButton, Form, InputGroup, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Form,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 import "../styles/search.scss";
 import { AiOutlineSearch } from "react-icons/ai";
 // import {FaLocationDot} from "react-icons/fa6";
 export default function Search() {
   return (
-    <div className='search'>
+    <div className="search">
       <form>
         <Container gap={50}>
           <Row>
             <Col xs={5}>
-              <input type="text" placeholder="Що шукаєте?" className="search__input input" />
+              <input
+                type="text"
+                placeholder="Що шукаєте?"
+                className="search__input input"
+              />
             </Col>
             <Col xs={5}>
-              <input className="search__input input " type="text" placeholder="Уся Україна" />
+              <input
+                className="search__input input "
+                type="text"
+                placeholder="Уся Україна"
+              />
             </Col>
             <Col xs={1}>
               <button type="submit">
@@ -35,12 +51,18 @@ export default function Search() {
               <InputGroup>
                 <InputGroup.Text>$</InputGroup.Text>
                 <InputGroup.Text>Від</InputGroup.Text>
-                <Form.Control aria-label="Dollar amount (with dot and two decimal places)" placeholder="0" />
+                <Form.Control
+                  aria-label="Dollar amount (with dot and two decimal places)"
+                  placeholder="0"
+                />
               </InputGroup>
             </Col>
             <Col>
               <InputGroup>
-                <Form.Control aria-label="Dollar amount (with dot and two decimal places)" placeholder="100" />
+                <Form.Control
+                  aria-label="Dollar amount (with dot and two decimal places)"
+                  placeholder="100"
+                />
                 <InputGroup.Text>$</InputGroup.Text>
                 <InputGroup.Text>До</InputGroup.Text>
               </InputGroup>
@@ -55,7 +77,7 @@ export default function Search() {
               </Form.Select>
             </Col>
             <Col>
-               <Form.Select aria-label="Default select example" xs={2}>
+              <Form.Select aria-label="Default select example" xs={2}>
                 <option>Спочатку</option>
                 <option value="1">
                   {/* <Form.Select aria-label="Default select exampleEE" xs={2}>
@@ -65,11 +87,11 @@ export default function Search() {
                   </Form.Select> */}
                 </option>
                 <option value="2">старіші / дешевші</option>
-              </Form.Select> 
+              </Form.Select>
             </Col>
           </Row>
         </Container>
       </form>
     </div>
-  )
+  );
 }
