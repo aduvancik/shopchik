@@ -2,7 +2,7 @@
 import "../styles/addProduct.scss";
 //variable
 import { categoriesArr } from "../listProducts";
-import AddTitle from "../components/addProduct/addTitle";
+import AddTitle from "../components/addProduct/AddTitle";
 //components
 
 export default function AddProduct() {

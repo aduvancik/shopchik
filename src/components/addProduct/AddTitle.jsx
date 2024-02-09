@@ -1,4 +1,5 @@
 import React from "react";
+import { categoriesArr } from "../../listProducts";
 
 export default function AddTitle() {
   return (
