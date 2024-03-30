@@ -1,0 +1,47 @@
+
+  /* Контейнер <div> - необхідно розмістити випадаючий контент */
+  .dropdown {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+  }
+  
+  /* Випадаючий контент (приховано за замовчуванням) */
+  .dropdown-content {
+    margin: 10px auto 0 auto;
+    display: none;
+    position: absolute;
+    top: 35px;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  /* Посилання всередині випадаючого списку */
+  .dropdown-content li {
+    border: 2px #002F34 solid;
+    border-radius: 10px;
+
+    color: black;
+    background-color: #fff;
+
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    transition: all ease .5s;
+    text-align: center;
+
+    &:hover {
+        background-color: #002F34;
+        color: #fff;
+        transform: scale(1.03);
+    }
+  }
+  
+  .dropdown-content-click {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }

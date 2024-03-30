@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/null.scss";
 import "./styles/global.scss";
+import "./styles/animation.scss";
 //components
 // import Header from './components/header/Header'
 //pages

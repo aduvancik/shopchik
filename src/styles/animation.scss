@@ -1,0 +1,19 @@
+.wave-animation {
+    transition: transform 0.3s ease;
+  }
+  
+  .wave-animation {
+    animation: waveAnimation 1s infinite;
+  }
+  
+  @keyframes waveAnimation {
+    0% {
+      transform: tscale(0.9); /* Початкове положення: зсув наліво на 5px */
+    }
+    50% {
+      transform: scale(1.1); /* Збільшуємо розмір та зсуваємо вправо на 5px */
+    }
+    100% {
+      transform: scale(1); /* Повертаємо до початкового розміру та положення */
+    }
+  }
