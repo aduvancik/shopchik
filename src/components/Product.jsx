@@ -12,7 +12,6 @@ export default function Product({ product }) {
 
   const addBasket = () => {
     setBasket(!basket);
-    console.log(basket);
   };
 
   const navigateToProductPage = () => {

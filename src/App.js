@@ -3,29 +3,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/null.scss";
 import "./styles/global.scss";
 import "./styles/animation.scss";
-//components
-// import Header from './components/header/Header'
-//pages
-import AddProductPages from "./pages/AddProductPages";
-import HomePages from "./pages/HomePages";
-import ProductPages from "./pages/ProductPages";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Loyout } from './components/Loyout';
-import ProfilePages from './pages/ProfilePages';
+//
+import { BrowserRouter, } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
+import { useContext } from 'react';
+import { Context } from '.';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import Loader from './components/Chat/Loader';
 
 
 function App() {
+  const { auth } = useContext(Context);
+  const [user, loading, error] = useAuthState(auth);
+
+  if (loading) {
+    return <Loader />
+  }
+  
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Loyout />}>
-              <Route index element={<HomePages />} />
-              <Route path="product/:productId" element={<ProductPages />} />
-              <Route path="Add-product" element={<AddProductPages />} />
-              <Route path="profile" element={<ProfilePages />} />
-          </Route>
-        </Routes>
+        <AppRouter />
       </BrowserRouter>
     </div>
   );

@@ -33,7 +33,6 @@ export default function ProductsList({ selectedCategory }) {
         const pagStart = activePage * PAGE_LIMIT;
         const pagEnd = pagStart + PAGE_LIMIT;
         let i = 1;
-        console.log(i+1,"l",activePage);
         return{
             pagItems,
             pagStart,

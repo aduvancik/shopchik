@@ -2,14 +2,26 @@ import React, { useState } from 'react';
 import "../../styles/description.scss"
 import SizeInput from '../SizeInput';
 
-export default function Description() {
-    const [sizeTitle, setSizeTitle] = useState(0);
+export default function Description(props) {
+    const { setProductData } = props;
+    const [sizeDescription, setSizeDescription] = useState(0);
     const [inputFocused, setInputFocused] = useState(false);
 
 
     const handleTitle = (event) => {
         const str = event.target.value;
-        setSizeTitle(str.length);
+        setSizeDescription(str.length);
+        if (str.length >= 40 && str.length <= 3000) {
+            setProductData(prevData => ({
+                ...prevData,
+                description: str,
+            }));
+        } else {
+            setProductData(prevData => ({
+                ...prevData,
+                description: "",
+            }));
+        }
     }
 
     const handleInputFocus = () => {
@@ -23,14 +35,14 @@ export default function Description() {
                 type="text"
                 className="description__input input"
                 placeholder="Придумайте, що ви хотіли би дізнатись з оголошення"
-                maxlength="3000"
+                maxLength="3000"
                 onChange={handleTitle}
                 rows={10}
                 cols={3}
                 onFocus={handleInputFocus}
                 required
             />
-            <SizeInput sizeTitle={sizeTitle} maxSize={3000} minSize={40} inputFocused={inputFocused} />
+            <SizeInput sizeTitle={sizeDescription} maxSize={3000} minSize={40} inputFocused={inputFocused} />
         </div>
     )
 }

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+//components
 import SizeInput from "../SizeInput";
 import DropDown from "../DropDown";
+//style
+import "../../styles/addTitle.scss";
 
 export default function AddTitle(props) {
-  const { setProductData, productData } = props;
+  const { setProductData } = props;
   const [sizeTitle, setSizeTitle] = useState(0);
+  const [price, setPrice] = useState('');
+
   const [inputFocused, setInputFocused] = useState(false);
 
+  //title
   const handleInputFocus = () => {
     setInputFocused(true);
   }
@@ -20,16 +26,35 @@ export default function AddTitle(props) {
         ...prevData,
         title: str
       }));
-      console.log(str, productData);
     } else {
-      // Якщо довжина назви не відповідає вимогам, можна очистити title у стані productData.
       setProductData(prevData => ({
         ...prevData,
-        // title: ""
-      }));
+        title: ""
+      }))
     }
   }
 
+  //price
+
+  const handlePrice = (e) => {
+    let value = e.target.value;
+    // Перевіряємо, чи містить значення будь-які символи, крім крапки та цифр
+    if (/[^\d.]/.test(value)) {
+      setPrice('');
+    } else {
+      const parts = value.split('.');//обрізаєм після коми одну цифру лишаєм
+
+      if (parts[1] && parts[1].length > 1) {
+        parts[1] = parts[1].substring(0, 1);
+        value = parts.join('.');
+      }
+      setPrice(value);
+      setProductData(prevData => ({
+        ...prevData,
+        price: price
+      }))
+    }
+  };
 
   return (
     <>
@@ -41,15 +66,29 @@ export default function AddTitle(props) {
           placeholder="Наприклад, Лабрадор‐ретривер цуценятка"
           className="input"
           onChange={handleTitle}
-          maxlength="70"
+          maxLength="70"
           onFocus={handleInputFocus}
           required
         />
         <SizeInput sizeTitle={sizeTitle} maxSize={70} minSize={16} inputFocused={inputFocused} />
       </div>
       <div className="addProduct__group">
+        <label htmlFor="price">Вкажіть ціну*</label>
+        <div className="addProduct__price-container">
+          <input
+            type="number"
+            id="price"
+            placeholder=""
+            className="input addProduct__price"
+            onChange={handlePrice}
+            required
+          />
+          <p>грн</p>
+        </div>
+      </div>
+      <div className="addProduct__group">
         <label htmlFor="category">Категорія*</label>
-        <DropDown />
+        <DropDown setProductData={setProductData} />
       </div>
     </>
   );

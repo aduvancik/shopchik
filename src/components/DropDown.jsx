@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "../styles/dropDown.scss";
 import { categoriesArr } from '../listProducts';
 
-export default function DropDown() {
+export default function DropDown(props) {
+    const { setProductData } = props;
     const [showDropDown, setShowDropDown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -25,9 +26,12 @@ export default function DropDown() {
 
     const handleCategorySelect = (category) => {
         setSelectedCategory(category);
-        setShowDropDown(false); 
+        setProductData(prevData => ({
+            ...prevData,
+            category: selectedCategory,
+        }));
+        setShowDropDown(false);
     }
-
     return (
         <div className="dropdown">
             <button type='button' className="button" onClick={showMenu}>
