@@ -29,12 +29,15 @@ export default function Contacts({ setProductData }) {
                 className="input"
                 required
                 onChange={handleNameChange}
+                value={"oleg"}
+                maxLength={20}
             />
             <label htmlFor="telephone">Номер телефону</label>
             <input
                 type="number"
                 id="telephone"
                 placeholder="Введіть телефон у форматі (0XX) XXX-XXXX"
+                value={'0663904077'}
                 className="input"
                 onChange={handleTelephoneChange}
                 pattern="[0]-[0-9]{2}-[0-9]{3}-[0-9]{4}"

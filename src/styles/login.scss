@@ -1,26 +1,26 @@
 .login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
 
-        width: 100%;
-        height: 100vh;
+    //     width: 100%;
+    //     height: 100vh;
 
-    &__container {
-        width: 30%;
-        height: 60%;
+    // &__container {
+    //     width: 30%;
+    //     height: 60%;
 
-        padding: 30px;
-        background: #e5e0e0;
-        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    //     padding: 30px;
+    //     background: #e5e0e0;
+    //     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
-        border: #002F34 3px solid;
-        border-radius: 35px 15px 10px 35px;
+    //     border: #002F34 3px solid;
+    //     border-radius: 35px 15px 10px 35px;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 30px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-between;
+    //     gap: 30px;
 
         h1 {
             color: #002F34;
@@ -28,5 +28,12 @@
             font-size: 20px;
             font-weight: bold;
         }
+
+        h2 {
+            color: #002F34;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
     }
-}
+// }

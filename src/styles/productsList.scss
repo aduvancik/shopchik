@@ -1,6 +1,7 @@
 .productsList {
   background-color: #f9f9f9;
   padding: 20px;
+  padding-bottom: 100px;
 
   &__container {
     max-width: 1200px;
@@ -11,6 +12,10 @@
     font-size: 34px;
     font-weight: bold;
     margin: 25px 0 20px 0;
+    text-align: center;
+  }
+
+  &__title-h2 {
     text-align: center;
   }
 

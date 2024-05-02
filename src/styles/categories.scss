@@ -35,16 +35,21 @@
     }
   }
 
+  
   &__img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-
+    
     margin: 0 auto;
     padding: 2.5px;
-
+    
     border-radius: 50%;
     border: 1px solid black;
+  }
+  
+  &__active {
+    border: 5px solid #002F34;
   }
 
   &__text {

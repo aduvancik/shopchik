@@ -6,7 +6,7 @@ import DropDown from "../DropDown";
 import "../../styles/addTitle.scss";
 
 export default function AddTitle(props) {
-  const { setProductData } = props;
+  const { setProductData, productData } = props;
   const [sizeTitle, setSizeTitle] = useState(0);
   const [price, setPrice] = useState('');
 
@@ -42,8 +42,7 @@ export default function AddTitle(props) {
     if (/[^\d.]/.test(value)) {
       setPrice('');
     } else {
-      const parts = value.split('.');//обрізаєм після коми одну цифру лишаєм
-
+      const parts = value.split('.');
       if (parts[1] && parts[1].length > 1) {
         parts[1] = parts[1].substring(0, 1);
         value = parts.join('.');
@@ -51,8 +50,8 @@ export default function AddTitle(props) {
       setPrice(value);
       setProductData(prevData => ({
         ...prevData,
-        price: price
-      }))
+        price: value // Використовуйте актуальне значення value
+      }));
     }
   };
 
@@ -81,6 +80,7 @@ export default function AddTitle(props) {
             placeholder=""
             className="input addProduct__price"
             onChange={handlePrice}
+            maxLength={5}
             required
           />
           <p>грн</p>
@@ -88,7 +88,7 @@ export default function AddTitle(props) {
       </div>
       <div className="addProduct__group">
         <label htmlFor="category">Категорія*</label>
-        <DropDown setProductData={setProductData} />
+        <DropDown setProductData={setProductData} productData={productData} />
       </div>
     </>
   );

@@ -15,6 +15,10 @@ export const publicRoutes = [
     {
         path: HOME_ROUTE,
         Component: HomePages
+    },
+    {
+        path: PRODUCT_ROUTE,
+        Component: ProductPages
     }
 ];
 
@@ -35,6 +39,10 @@ export const privateRoutes = [
         path: HOME_ROUTE,
         Component: HomePages
     },
+    {
+        path: PRODUCT_ROUTE,
+        Component: ProductPages
+    }
     // {
     //     path: LOGIN_ROUTE,
     //     Component: Login 

@@ -18,22 +18,48 @@
         }
     }
 
-    
-    button {
-        width: 120px;
-        height: 60px;
-        
-        background-color: #002F34;
-        color: #fff;
-        font-size: 17px;
-
+    &__container {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+        gap: 20px;
+        padding: 20px;
 
-        padding: 10px 20px;
-        font-weight: 600;
-
+        p{
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            font-size: 26px;
+        }
     }
+
+    &__button_search {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        
+        svg {
+            stroke-width: 50px;
+        }
+    }
+
+    &__price {
+        max-width: 25%;
+    }
+
+    // button {
+    //     width: 120px;
+    //     height: 60px;
+        
+    //     background-color: #002F34;
+    //     color: #fff;
+    //     font-size: 17px;
+
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     gap: 10px;
+
+    //     padding: 10px 20px;
+    //     font-weight: 600;
+
+    // }
 }

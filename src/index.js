@@ -6,6 +6,7 @@ import App from './App';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
 //initialize Firevase
 firebase.initializeApp( {
@@ -21,20 +22,24 @@ firebase.initializeApp( {
 
 export const Context = createContext(null);
 
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+const storage = firebase.storage();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Context.Provider value={{
       firebase,
       auth,
-      firestore
+      firestore,
+      storage
     }}>
       <App />
     </Context.Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 

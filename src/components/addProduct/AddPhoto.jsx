@@ -1,22 +1,26 @@
-// AddPhoto.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import { MdOutlineMonochromePhotos, MdDeleteForever } from 'react-icons/md';
 
 export default function AddPhoto(props) {
   const { url, onImageSelected, onImageDeleted } = props;
 
-  const handleFileInputChange = (event) => {
+  const [photo, setPhoto] = useState(null);
+
+  const handleFileInputChange = async (event) => {
     const file = event.target.files[0];
+
     if (file) {
       const imageURL = URL.createObjectURL(file);
-      onImageSelected(imageURL);
+      setPhoto(file);
+      onImageSelected(imageURL, file);
+      console.log(file, photo, "photo");
     }
   };
 
   const handleDeleteClick = () => {
-    onImageDeleted(url);
+    onImageDeleted(url, photo);
+    // console.log(photo);
   };
 
   return (
@@ -24,7 +28,7 @@ export default function AddPhoto(props) {
       <div className="addProduct__content">
         {url ? (
           <div className='addProduct__imgContainer'>
-            <img src={url} alt="Зображення" className="addProduct__image" />
+            <img src={url} alt="animal" className="addProduct__image" />
             <div className='addProduct__blur'>
               <MdDeleteForever className="addProduct__delete wave-animation" onClick={handleDeleteClick} />
             </div>
@@ -34,7 +38,7 @@ export default function AddPhoto(props) {
             <MdOutlineMonochromePhotos className="icons addProduct__icon" />
             <div className="addProduct__hoverPhoto">
               <IoMdAdd className="icons wave-animation" />
-              <p>Додати фото</p>
+              <p>Add Photo</p>
             </div>
           </div>
         )}

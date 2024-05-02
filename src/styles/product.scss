@@ -11,6 +11,8 @@
     background-color: #fff;
 
     transition: transform 0.3s;
+    cursor: pointer;
+    // overflow: hidden;
 
     &:hover {
       transform: scale(1.05);
@@ -26,11 +28,15 @@
       margin-top: 10px;
     }
 
-      &__infoTitle {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
+    &__infoTitle {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap; /* Запобігає перенесенню тексту на новий рядок */
+      overflow: hidden; /* Обрізає текст, який виходить за межі контейнера */
+    }
+    
 
       svg {
         font-size: 20px;

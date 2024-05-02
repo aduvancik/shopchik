@@ -13,14 +13,13 @@ export default function ProductPages() {
 
   if (!product) {
     // Handle the case where there is no product in the location state
-    return <div>No product data available</div>;
+    return <div>Помилка</div>;
   }
-
   return (
     <div>
-      <Photo product={product}/>
-      <DescriptionProduct product={product}/>
-      <Salesman product={product}/>
+      <Photo photosArr={product.product.photos} />
+      <DescriptionProduct description={product.product.description} />
+      <Salesman contactPerson={product.product.contactPerson} />
     </div>
   );
 }

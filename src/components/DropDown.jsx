@@ -3,9 +3,9 @@ import "../styles/dropDown.scss";
 import { categoriesArr } from '../listProducts';
 
 export default function DropDown(props) {
-    const { setProductData } = props;
+    const { setProductData, productData } = props;
     const [showDropDown, setShowDropDown] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
         document.addEventListener('click', handleDocumentClick);
@@ -13,6 +13,9 @@ export default function DropDown(props) {
             document.removeEventListener('click', handleDocumentClick);
         };
     }, []);
+
+    useEffect(() => {
+    }, [productData]);
 
     const handleDocumentClick = (event) => {
         if (!event.target.closest('.dropdown')) {
@@ -28,7 +31,7 @@ export default function DropDown(props) {
         setSelectedCategory(category);
         setProductData(prevData => ({
             ...prevData,
-            category: selectedCategory,
+            category: category,
         }));
         setShowDropDown(false);
     }
