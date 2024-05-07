@@ -14,7 +14,6 @@ export default function AddPhoto(props) {
       const imageURL = URL.createObjectURL(file);
       setPhoto(file);
       onImageSelected(imageURL, file);
-      console.log(file, photo, "photo");
     }
   };
 

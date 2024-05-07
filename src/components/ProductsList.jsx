@@ -47,7 +47,7 @@ export default function ProductsList({ selectedCategory, filterProducts }) {
             pagItems,
             pagStart,
             pagEnd,
-        };
+        }
     },);
 
     return (

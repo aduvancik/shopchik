@@ -1,0 +1,80 @@
+  .carousel {
+    position: relative;
+    width: 200px;
+    padding: 10px 40px;
+    // border: 1px solid #CCC;
+    // border-radius: 15px;
+    background: #fff;
+
+    .pagination span{
+        border: 1px black solid;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .pagination {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .pagination .active {
+        background-color: #08979c;
+    }
+  }
+  
+  .carousel img {
+    width: 130px;
+    height: 130px;
+    /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
+    display: block;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 60px;
+    padding: 0;
+    border-radius: 15px;
+    font-size: 24px;
+    display: block;
+    transition: all ease .2s;
+  }
+  
+  .arrow:focus {
+    outline: none;
+  }
+  
+  .arrow:hover {
+    color: #08979c;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 7px;
+  }
+  
+  .next {
+    right: 7px;
+  }
+  
+  .gallery {
+    width: 390px;
+    overflow: hidden;
+  }
+  
+  .gallery ul {
+    height: 130px;
+    width: 9999px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: margin-left 250ms;
+    font-size: 0;
+  }
+  
+  .gallery li {
+    display: inline-block;
+  }

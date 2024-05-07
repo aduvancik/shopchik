@@ -79,8 +79,14 @@ export default function AddTitle(props) {
             id="price"
             placeholder=""
             className="input addProduct__price"
-            onChange={handlePrice}
-            maxLength={5}
+            onChange={(e) => {
+              let value = e.target.value;
+              if (value.length > 6) {
+                value = value.slice(0, 6);
+                e.target.value = value;
+              }
+              handlePrice(e);
+            }}
             required
           />
           <p>грн</p>

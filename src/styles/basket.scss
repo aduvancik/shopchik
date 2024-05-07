@@ -1,0 +1,73 @@
+.basket {
+    position: absolute;
+    z-index: 20;
+    width: 500px;
+    // width: 100%;
+    // top: 0;
+    border: 2px solid black;
+    margin: 0 auto;
+    background-color: #eaeff3;
+    border-radius: 20px;
+    padding: 20px;
+    top: 55px;
+    color: black;
+    cursor: auto;
+
+    &__icon {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(183, 36, 36);
+            transform: scale(1.1);
+        }
+    }
+
+    &__title-h1 {
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &__img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    &__product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 5px;
+        font-size: 13px;
+        transition: ease all .5s;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 3px solid black;
+            border-radius: 10px;
+
+        }
+    }
+
+    &__title {
+    text-overflow: ellipsis;
+      white-space: nowrap; 
+      overflow: hidden; 
+    }
+
+    &__price {
+        white-space: nowrap; 
+
+    }
+
+    &__delete {
+        padding: 5px;
+
+    }
+}

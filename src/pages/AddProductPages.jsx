@@ -21,10 +21,16 @@ export default function AddProduct() {
   const navigate = useNavigate();
 
   const [arrImg, setArrImg] = useState([]);
-  const [loading, setLoading] = useState(false); // State to manage loading
+  const [loading, setLoading] = useState(false);
   const [arrPhoto, setArrPhoto] = useState([]);
   const [error, setError] = useState(false);
   const [productData, setProductData] = useState({
+    title: "",
+    price: "",
+    description: "",
+    telephone: "",
+    contactPerson: "",
+    category: "",
     photos: [],
   });
 
@@ -63,6 +69,7 @@ export default function AddProduct() {
   const handlePublish = async (event) => {
     event.preventDefault();
     let hasEmptyValues = false;
+    //перевірка чи всі дані заповнені
     Object.entries(productData).forEach(([key, value]) => {
       if (key !== 'telephone' && (value === "" || (Array.isArray(value) && value.length === 0))) {
         hasEmptyValues = true;
@@ -70,7 +77,6 @@ export default function AddProduct() {
     });
 
     if (hasEmptyValues) {
-      console.log(productData);
       setError(true);
     } else {
       setError(false);
@@ -88,34 +94,26 @@ export default function AddProduct() {
         }));
 
         // Додаємо продукт до firestore
-        await firestore.collection("products").add({
-          uidUser: user.uid,
-          uid: uuidv4(),
-          product: {
-            ...productData,
-            photos: photoURLs,
-          },
-          createdAt: firebase.firestore.Timestamp.now()
-        });
+        const uid =uuidv4();
+          await firestore.collection("products").doc(uid).set({
+            uid: uid,
+            uidUser: user.uid,
+            product: {
+              ...productData,
+              photos: photoURLs,
+            },
+            createdAt: firebase.firestore.Timestamp.now()
+          });
 
         // Переходимо на домашню сторінку
         navigate(HOME_ROUTE);
         setLoading(false);
-        // navigateToProductPage(productData);
       } catch (error) {
         console.error("Error uploading photos or adding product:", error);
         setError(true);
       }
     }
   };
-
-  // const navigateToProductPage = (product) => {
-  //   navigate(`product/${encodeURIComponent(product.product.title)}`, {
-  //     state: { product },
-  //   });
-  // };
-
-
 
   return (
     <div className="addProduct">
@@ -138,7 +136,7 @@ export default function AddProduct() {
               </div>
               <Description setProductData={setProductData} />
               <Contacts setProductData={setProductData} />
-              <button type="button" className="button maxContent" onClick={handlePublish}>Опублікувати</button>
+              <button type="submit" className="button maxContent" onClick={handlePublish}>Опублікувати</button>
             </form>
           </div>
         </>
