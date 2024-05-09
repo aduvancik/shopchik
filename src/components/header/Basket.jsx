@@ -21,13 +21,13 @@ export function Basket({ productsArr, handleRemoveFromCart, handleClose, setShow
     };
 
     const handleClick = (event) => {
-        event.stopPropagation(); // Зупиняємо подальше поширення кліка
+        event.stopPropagation();
     };
 
     const navigateToProductPage = (event, product) => {
         handleClose(event);
         navigate(`product/${encodeURIComponent(product.product.title)}`, {
-            state: { product },
+            state: { product }
         });
     };
     return (
@@ -39,7 +39,7 @@ export function Basket({ productsArr, handleRemoveFromCart, handleClose, setShow
                     <div className='basket__title'>{product.product.title}</div>
                     <div className='basket__price'>{product.product.price} грн.</div>
                     <img className="basket__img" src={product.product.photos[0]} alt="Фото" />
-                    <button className="button basket__delete" type='button' onClick={() => handleRemoveFromCart(product.id)}>Видалити</button>
+                    <button className="button basket__delete" type='button' onClick={(event) => handleRemoveFromCart(event, product.id)}>Видалити</button>
                 </div>
             ))}
         </div>

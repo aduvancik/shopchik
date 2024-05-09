@@ -71,7 +71,7 @@ export default function AddProduct() {
     let hasEmptyValues = false;
     //перевірка чи всі дані заповнені
     Object.entries(productData).forEach(([key, value]) => {
-      if (key !== 'telephone' && (value === "" || (Array.isArray(value) && value.length === 0))) {
+      if (value === "" || (Array.isArray(value) && value.length === 0)) {
         hasEmptyValues = true;
       }
     });

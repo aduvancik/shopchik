@@ -24,7 +24,6 @@ export default function Header() {
     const { firestore } = useContext(Context);
     const [error, setError] = useState(false);
 
-
     useEffect(() => {
         const fetchCart = async () => {
             try {
@@ -54,7 +53,11 @@ export default function Header() {
     }, [showBasket]);
 
 
-    const handleRemoveFromCart = async (productId) => {
+
+
+    const handleRemoveFromCart = async (event, productId) => {
+        event.stopPropagation();
+
         try {
             await firestore.collection("carts").doc(user.uid).update({
                 products: firebase.firestore.FieldValue.arrayRemove(productId)
