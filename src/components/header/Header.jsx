@@ -14,6 +14,7 @@ import firebase from 'firebase/compat/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ADD_PRODUCT_ROUTE, CHAT_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
 import { Basket } from './Basket';
+import Modal from '../Modal';
 
 export default function Header() {
     const [showBasket, setShowBasket] = useState(false);
@@ -21,6 +22,8 @@ export default function Header() {
     const [user] = useAuthState(auth);
     const [productsArr, setProductsArr] = useState([]);
     const { firestore } = useContext(Context);
+    const [error, setError] = useState(false);
+
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -39,15 +42,17 @@ export default function Header() {
                     }));
                     setProductsArr(products);
                 } else {
-                    console.log("Cart does not exist for user:", user.uid);
+                    if (showBasket) setError(true);
+
                 }
             } catch (error) {
-                console.error("Error fetching cart:", error);
+                if (showBasket) setError(true);
             }
         };
 
         fetchCart();
-    }, [showBasket, user.uid]);
+    }, [showBasket]);
+
 
     const handleRemoveFromCart = async (productId) => {
         try {
@@ -62,9 +67,8 @@ export default function Header() {
                 return { id: productDoc.id, ...productDoc.data() };
             }));
             setProductsArr(updatedProducts);
-            console.log("Product removed from cart:", productId);
         } catch (error) {
-            console.error("Помилка видалення продукту з корзини:", error);
+            setError(true)
         }
     };
 
@@ -79,6 +83,7 @@ export default function Header() {
     return (
         <>
             <header className='header'>
+                {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли" />}
                 <div className="header__content">
                     <Link to="/" className="header__functional_item">
                         <div className="header__logo">Shop</div>

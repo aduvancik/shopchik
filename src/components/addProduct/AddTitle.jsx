@@ -89,7 +89,7 @@ export default function AddTitle(props) {
             }}
             required
           />
-          <p>грн</p>
+          <p>грн.</p>
         </div>
       </div>
       <div className="addProduct__group">

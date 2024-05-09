@@ -1,80 +1,71 @@
-  .carousel {
-    position: relative;
-    width: 200px;
-    padding: 10px 40px;
-    // border: 1px solid #CCC;
-    // border-radius: 15px;
-    background: #fff;
+[class^="number-slide"],
+[class*=" number-slide"] {
+  background: #F2F4F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  height: 400px;
+  max-height: 100vh;
+  object-fit: contain;
+}
 
-    .pagination span{
-        border: 1px black solid;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-    }
+.slider__container {
+  width: 60%;
+}
 
-    .pagination {
-        display: flex;
-        gap: 5px;
-        justify-content: center;
-        cursor: pointer;
-        position: absolute;
-    }
+.navigation-wrapper {
+  position: relative;
+}
 
-    .pagination .active {
-        background-color: #08979c;
-    }
-  }
-  
-  .carousel img {
-    width: 130px;
-    height: 130px;
-    /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
-    display: block;
-  }
-  
-  .arrow {
-    position: absolute;
-    top: 60px;
-    padding: 0;
-    border-radius: 15px;
-    font-size: 24px;
-    display: block;
-    transition: all ease .2s;
-  }
-  
-  .arrow:focus {
-    outline: none;
-  }
-  
-  .arrow:hover {
-    color: #08979c;
-    cursor: pointer;
-  }
-  
-  .prev {
-    left: 7px;
-  }
-  
-  .next {
-    right: 7px;
-  }
-  
-  .gallery {
-    width: 390px;
-    overflow: hidden;
-  }
-  
-  .gallery ul {
-    height: 130px;
-    width: 9999px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    transition: margin-left 250ms;
-    font-size: 0;
-  }
-  
-  .gallery li {
-    display: inline-block;
-  }
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: #000;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: #000;
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
+  display: none;
+}

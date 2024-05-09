@@ -1,0 +1,56 @@
+.salesMan {
+    background-color: #fff;
+    margin-left:20px ;
+    padding: 30px;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__container-dataIcon {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__container-button {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+
+    &__data {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 0;
+    }
+
+    &__title{
+font-size: 20px;
+font-weight: 300;
+text-wrap:stable;
+width: 100%;
+word-wrap: break-word;
+    }
+
+    &__price{
+font-size: 20px;
+font-weight: 900;
+    }
+
+    &__button_message {
+
+    }
+
+    &__button_tel {
+        background-color: #fff;
+        color: #000;
+
+        &:hover {
+            background-color: #002F34;
+            color: #fff;
+        }
+    }
+}

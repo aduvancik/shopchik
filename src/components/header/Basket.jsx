@@ -37,7 +37,7 @@ export function Basket({ productsArr, handleRemoveFromCart, handleClose, setShow
             {productsArr.map(product => (
                 <div key={product.id} className='basket__product' onClick={(event) => navigateToProductPage(event, product)}>
                     <div className='basket__title'>{product.product.title}</div>
-                    <div className='basket__price'>{product.product.price} грн</div>
+                    <div className='basket__price'>{product.product.price} грн.</div>
                     <img className="basket__img" src={product.product.photos[0]} alt="Фото" />
                     <button className="button basket__delete" type='button' onClick={() => handleRemoveFromCart(product.id)}>Видалити</button>
                 </div>

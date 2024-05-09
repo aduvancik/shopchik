@@ -2,8 +2,9 @@ import React from 'react';
 import "../styles/modal.scss"
 
 export default function Modal(props) {
-    const {setError, text} = props;
-    const hideModal = () => {
+    const { setError, text } = props;
+    const hideModal = (event) => {
+        event.stopPropagation();
         setError(false);
     }
 
@@ -15,7 +16,7 @@ export default function Modal(props) {
                     <span className="title">Ох халепа!</span>
                 </div>
                 <p>{text}</p>
-                <div className="button" onClick={hideModal}>Зрозуміло</div>
+                <div className="button" onClick={(event) => hideModal(event)}>Зрозуміло</div>
             </div>
         </div>
     )

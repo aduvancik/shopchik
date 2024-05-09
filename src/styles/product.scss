@@ -40,20 +40,6 @@
       overflow: hidden; /* Обрізає текст, який виходить за межі контейнера */
     }
     
-
-      svg {
-        font-size: 20px;
-        color: #3498db;
-
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
-
-      .basket__active {
-        color: red;
-      }
-
       &__price {
         font-size: 16px;
         font-weight: bold;
@@ -71,3 +57,5 @@
         }
       }
   }
+
+ 
