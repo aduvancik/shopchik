@@ -32,6 +32,8 @@ export default function AddProduct() {
     contactPerson: "",
     category: "",
     photos: [],
+    view: 0,
+    basket: [],
   });
 
   const remainingCount = Math.max(6 - arrImg.length, 0);
@@ -71,7 +73,7 @@ export default function AddProduct() {
     let hasEmptyValues = false;
     //перевірка чи всі дані заповнені
     Object.entries(productData).forEach(([key, value]) => {
-      if (value === "" || (Array.isArray(value) && value.length === 0)) {
+      if (key !== 'view' && key !== 'basket' && (value === "" || (Array.isArray(value) && value.length === 0))) {
         hasEmptyValues = true;
       }
     });
@@ -94,16 +96,16 @@ export default function AddProduct() {
         }));
 
         // Додаємо продукт до firestore
-        const uid =uuidv4();
-          await firestore.collection("products").doc(uid).set({
-            uid: uid,
-            uidUser: user.uid,
-            product: {
-              ...productData,
-              photos: photoURLs,
-            },
-            createdAt: firebase.firestore.Timestamp.now()
-          });
+        const uid = uuidv4();
+        await firestore.collection("products").doc(uid).set({
+          uid: uid,
+          uidUser: user.uid,
+          product: {
+            ...productData,
+            photos: photoURLs,
+          },
+          createdAt: firebase.firestore.Timestamp.now()
+        });
 
         // Переходимо на домашню сторінку
         navigate(HOME_ROUTE);

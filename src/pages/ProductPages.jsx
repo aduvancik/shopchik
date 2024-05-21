@@ -26,7 +26,7 @@ export default function ProductPages() {
         <Slidere listPhotoSrc={product.product.photos} />
         <Salesman product={product} />
       </div>
-      <DescriptionProduct description={product.product.description} />
+      <DescriptionProduct description={product.product.description} basket={product.product.basket}/>
     </div>
   );
 }

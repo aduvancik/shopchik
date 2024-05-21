@@ -61,7 +61,6 @@ export default function ProductsList({ selectedCategory, filterProducts }) {
                                 <Product
                                     key={product.uid}
                                     product={product}
-                                // loading={loading}
                                 />
                             ))}
                         </ul>

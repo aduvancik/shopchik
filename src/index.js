@@ -7,6 +7,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import { getFirestore } from 'firebase/firestore';
 
 //initialize Firevase
 firebase.initializeApp( {
@@ -26,6 +27,8 @@ export const Context = createContext(null);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const storage = firebase.storage();
+// export const auth = getAuth();
+export const db = getFirestore();
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

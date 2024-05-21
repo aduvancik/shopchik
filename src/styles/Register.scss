@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.formContainer {
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .error {
+    color: rgb(157, 55, 55);
+  }
+}
+
+.formWrapper {
+  background-color: #fff;
+  padding: 20px 60px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    color: #5d5b8d;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    input {
+        padding: 15px;
+        border: none;
+        border-bottom: 1px solid #a7bcff;
+
+        &::placeholder {
+            color: rgb(175,175,175);
+        }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #8da4f1;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .addPhotoIcon {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    button {
+        background-color: #7b96ec;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+}
+
+
+.logo {
+  color: #5d5b8d;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.title {
+  color: #5d5b8d;
+  font-size: 12px;
+}

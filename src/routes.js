@@ -1,7 +1,7 @@
 //variable
 import { ADD_PRODUCT_ROUTE, CHAT_ROUTE, HOME_ROUTE, PRODUCT_ROUTE, PROFILE_ROUTE } from "./utils/consts";
 //components
-import { Chat } from "./components/Chat/Chat.jsx";
+import ChatPages, { Chat } from "./pages/ChatPages.jsx";
 import ProfilePages from "./pages/ProfilePages.jsx";
 import AddProductPages from "./pages/AddProductPages";
 import ProductPages from "./pages/ProductPages.jsx";
@@ -25,7 +25,7 @@ export const publicRoutes = [
 export const privateRoutes = [
     {
         path: CHAT_ROUTE,
-        Component: Chat
+        Component: ChatPages
     },
     {
         path: ADD_PRODUCT_ROUTE,
