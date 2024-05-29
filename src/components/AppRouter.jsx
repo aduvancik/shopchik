@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../routes';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../utils/consts';
 //components
-import { Login } from './Chat/Login';
+import { Login } from '../pages/LoginPages';
 import { Context } from '..';
 //firebase
 import { useAuthState } from "react-firebase-hooks/auth";

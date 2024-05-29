@@ -18,7 +18,7 @@ const {currentUser} = useContext(AuthContext);
             case "CHANGE_USER":
                 return {
                     user: action.payload,
-                    chatId:
+           chatId:
                         currentUser.uid > action.payload.uid
                             ? currentUser.uid + action.payload.uid
                             : action.payload.uid + currentUser.uid,

@@ -4,7 +4,7 @@ import ProductsList from '../components/ProductsList'
 import { useContext, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Context } from '..';
-import Loader from '../components/Chat/Loader';
+import Loader from '../components/Loader';
 
 export default function HomePages() {
   const [selectedCategory, setSelectedCategory] = useState(null);

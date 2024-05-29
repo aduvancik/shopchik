@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 //style
 import "../styles/product.scss";
 //
-import Loader from "./Chat/Loader";
+import Loader from "./Loader";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { formatDate } from "../utils/date";

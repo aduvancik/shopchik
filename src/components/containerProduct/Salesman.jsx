@@ -6,6 +6,8 @@ import { addBasket } from '../../utils/addBasket';
 import { Context } from '../..';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Modal from '../Modal';
+import { useNavigate } from 'react-router-dom';
+import { CHAT_ROUTE } from '../../utils/consts';
 
 export default function Salesman({ product }) {
   const { auth, firestore } = useContext(Context);
@@ -13,6 +15,15 @@ export default function Salesman({ product }) {
   const [basket, setBasket] = useState(false);
   const [error, setError] = useState(false);
   const [phone, setPhone] = useState("Показати телефон");
+  const navigate = useNavigate();
+
+
+
+  const handleNavigateToChat = () => {
+    navigate(CHAT_ROUTE, {
+      state: { product },
+    });
+  };
 
   return (
     <div className='salesMan'>
@@ -24,7 +35,7 @@ export default function Salesman({ product }) {
       <h1 className='salesMan__title'> {product.product.title}</h1>
       <p className='salesMan__price'>{product.product.price} грн.</p>
       <div className='salesMan__container-button'>
-        <button type='salesMan__button_message button' className='button'>Повідомлення</button>
+        <button type='salesMan__button_message button' className='button' onClick={handleNavigateToChat}>Повідомлення</button>
         <button className='salesMan__button_tel button' onClick={() => setPhone(product.product.telephone)}>{phone}</button>
       </div>
 

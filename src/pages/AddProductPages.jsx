@@ -13,7 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "..";
 import firebase from 'firebase/compat/app';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import Loader from "../components/Chat/Loader";
+import Loader from "../components/Loader";
 
 export default function AddProduct() {
   const { auth, firestore, storage } = useContext(Context);

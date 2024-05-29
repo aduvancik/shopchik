@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 //style
-import "../../styles/login.scss";
+import "../styles/login.scss";
 //firebase
 import firebase from 'firebase/compat/app';
-import { Context } from '../..';
+import { Context } from '..';
 
 export function Login() {
   const { auth } = useContext(Context);

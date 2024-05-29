@@ -27,8 +27,7 @@ export const Context = createContext(null);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const storage = firebase.storage();
-// export const auth = getAuth();
-export const db = getFirestore();
+const db = getFirestore();
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,7 +37,8 @@ root.render(
       firebase,
       auth,
       firestore,
-      storage
+      storage,
+      db
     }}>
       <App />
     </Context.Provider>

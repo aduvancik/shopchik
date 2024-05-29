@@ -1,7 +1,7 @@
 //variable
 import { ADD_PRODUCT_ROUTE, CHAT_ROUTE, HOME_ROUTE, PRODUCT_ROUTE, PROFILE_ROUTE } from "./utils/consts";
 //components
-import ChatPages, { Chat } from "./pages/ChatPages.jsx";
+import ChatPages from "./pages/ChatPages.jsx";
 import ProfilePages from "./pages/ProfilePages.jsx";
 import AddProductPages from "./pages/AddProductPages";
 import ProductPages from "./pages/ProductPages.jsx";
