@@ -23,6 +23,9 @@
         font-size: 20px;
         cursor: pointer;
        
+        &_select {
+            background-color: red;
+        }
         img{
             border-radius: 50%;
             width: 50px;

@@ -4,7 +4,7 @@ import { Context } from '../..';
 import { doc, getDoc } from 'firebase/firestore';
 import "../../styles/chat/sidebar.scss";
 
-export default function Sidebar({ setChat, setSelectedChat, currentUserUid }) {
+export default function Sidebar({ setChat, setSelectedChat, currentUserUid, selectedChat }) {
     const { auth, db } = useContext(Context);
     const [user] = useAuthState(auth);
     const [chats, setChats] = useState([]);
@@ -24,17 +24,19 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid }) {
                     setChats(chatsArray);
                 }
             }
+
+            console.log(selectedChat.uid === chats[0].uid);
         };
 
         fetchChats();
-    }, [user, db]);
+    }, [user, db, selectedChat]);
 
     const handleSelectChat = (chat) => {
         const combinedId = currentUserUid > chat.uid
             ? `${currentUserUid}_${chat.uid}`
             : `${chat.uid}_${currentUserUid}`;
 
-        setSelectedChat(chat);
+        // setSelectedChat(chat);
         setChat(true);
 
         // Load the chat data for the selected chat
@@ -43,6 +45,7 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid }) {
                 setChat(chatDoc.data());
             }
         });
+        console.log(chat);
     };
 
     return (
@@ -50,7 +53,7 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid }) {
             <h1>Чати</h1>
             <ul className='sidebar__list'>
                 {chats.map((chat, index) => (
-                    <li key={index} onClick={() => handleSelectChat(chat)} className='sidebar__item'>
+                    <li key={index} onClick={() => handleSelectChat(chat)} className={selectedChat.uid === chat.uid?'sidebar__item sidebar__item_select':"'sidebar__item'"}>
                         <img src={chat.photoURL} alt="avatar" />
                         {chat.displayName}
                     </li>

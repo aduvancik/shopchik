@@ -7,7 +7,6 @@ import Sidebar from "../components/Chat/Sidebar";
 import Input from "../components/Chat/Input";
 import Messages from "../components/Chat/Messages";
 import "../styles/chat/chatPages.scss";
-// import Input from "../components/Chat/input";
 
 export default function ChatPages() {
   const { auth, storage, db } = useContext(Context);
@@ -19,8 +18,6 @@ export default function ChatPages() {
   const currentUserUid = user?.uid;
   const userUid = product?.uidUser;
   const [combinedId, setCombinedId] = useState("");
-
-  console.log(product, "product");
 
   useEffect(() => {
     if (!currentUserUid || !userUid) return;
@@ -36,12 +33,7 @@ export default function ChatPages() {
         const chatDoc = await getDoc(doc(db, "chats", combinedId));
 
         if (!chatDoc.exists()) {
-          const recipient = {
-            name: user?.displayName || "Unnamed1",
-            photo: user?.photoURL || ""
-          };
-
-          await setDoc(doc(db, "chats", combinedId), { messages: [], recipient });
+          await setDoc(doc(db, "chats", combinedId), { messages: [], recipient: { name: product.displayName, photo: product.photoURL } });
 
           const currentUserChatsRef = doc(db, "usersChats", currentUserUid);
           const otherUserChatsRef = doc(db, "usersChats", userUid);
@@ -57,8 +49,8 @@ export default function ChatPages() {
           await updateDoc(currentUserChatsRef, {
             [`${combinedId}.userInfo`]: {
               uid: userUid,
-              displayName: product?.displayName || "Unnamed",
-              photoURL: product?.photoURL || ""
+              displayName: product.displayName,
+              photoURL: product.photoURL
             },
             [`${combinedId}.date`]: serverTimestamp()
           });
@@ -66,8 +58,8 @@ export default function ChatPages() {
           await updateDoc(otherUserChatsRef, {
             [`${combinedId}.userInfo`]: {
               uid: currentUserUid,
-              // displayName: user?.displayName || "Unnamed",
-              // photoURL: user?.photoURL || ""
+              displayName: user?.displayName,
+              photoURL: user?.photoURL
             },
             [`${combinedId}.date`]: serverTimestamp()
           });
@@ -75,8 +67,8 @@ export default function ChatPages() {
 
         setChat(chatDoc.data());
         setSelectedChat({
-          displayName: product?.displayName || "Unnamed",
-          photoURL: product?.photoURL || "",
+          displayName: product.displayName,
+          photoURL: product.photoURL,
           uid: userUid
         });
       } catch (err) {
@@ -87,23 +79,14 @@ export default function ChatPages() {
     initializeChat(userUid);
   }, [currentUserUid, userUid, product, db, user?.displayName, user?.photoURL]);
 
-  console.log(userUid);
-
   return (
     <div className='chat'>
       <div className="chat__container">
-        <Sidebar setChat={setChat} setSelectedChat={setSelectedChat} currentUserUid={currentUserUid} />
+        <Sidebar setChat={setChat} selectedChat={selectedChat} setSelectedChat={setSelectedChat} currentUserUid={currentUserUid} />
         {chat ? (
           <div className="chat__messagesInput">
             <Messages combinedId={combinedId} chat={selectedChat} />
-            <Input
-              currentUserUid={currentUserUid}
-              combinedId={combinedId}
-              db={db}
-              storage={storage}
-              recipientName={selectedChat?.displayName}
-              recipientPhoto={selectedChat?.photoURL}
-            />
+            <Input currentUserUid={currentUserUid} chat={selectedChat} combinedId={combinedId} db={db} storage={storage} />
           </div>
         ) : (<h1>Відкрийте чат</h1>)}
       </div>

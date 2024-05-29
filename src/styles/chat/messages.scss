@@ -36,4 +36,19 @@
     border-radius: 10px;
     margin-top: 10px;
   }
+
+  .messages__info {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    gap: 24px;
+    width: 100%;
+    border-bottom: #000 2px solid;
+    padding: 10px;
+
+    img {
+      border-radius: 50%;
+      width: 50px;
+      margin-left: 10px;    }
+  }
   
