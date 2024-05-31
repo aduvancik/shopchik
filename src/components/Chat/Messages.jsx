@@ -4,13 +4,13 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import '../../styles/chat/messages.scss';
 import { Context } from '../..';
 
-export default function Messages({ combinedId, chat }) {
+export default function Messages({chat }) {
     const { auth, db } = useContext(Context);
     const [user] = useAuthState(auth);
     const [messages, setMessages] = useState([]);
     const [recipient, setRecipient] = useState(null);
 
-    // console.log(chat);
+    const combinedId = chat.chatId;
 
     useEffect(() => {
         if (!combinedId) return;
@@ -31,13 +31,16 @@ export default function Messages({ combinedId, chat }) {
             unsubscribeMessages();
             unsubscribeRecipient();
         }
-    }, [combinedId, db, user.uid]);
+    }, [combinedId, db]);
 
-    if (!recipient) {
-        setRecipient({ name: chat.displayName, photo: chat.photoURL })
-    }
+    // Оновлюємо одержувача, коли змінюється обраний чат
+    useEffect(() => {
+        if (chat) {
+            setRecipient({ name: chat.displayName, photo: chat.photoURL });
+        }
+    }, [chat]);
 
-    // console.log(recipient);
+    // console.log(chat);
 
     return (
         <div className="messages">
@@ -49,7 +52,6 @@ export default function Messages({ combinedId, chat }) {
                             <p>{recipient.name}</p>
                         </>
                     )}
-                    <p>{chat.id}</p>
                 </div>
             )}
             <div className="messages__container">

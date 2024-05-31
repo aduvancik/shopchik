@@ -33,6 +33,17 @@ export default function ChatPages() {
         const chatDoc = await getDoc(doc(db, "chats", combinedId));
 
         if (!chatDoc.exists()) {
+          if (!product) {
+            console.error("Дані продукту відсутні у location.state");
+            return;
+          }
+
+          if (!product.displayName || !product.photoURL) {
+            console.log(product);
+            console.error("Недостатньо даних для створення чату");
+            return;
+          }
+
           await setDoc(doc(db, "chats", combinedId), { messages: [], recipient: { name: product.displayName, photo: product.photoURL } });
 
           const currentUserChatsRef = doc(db, "usersChats", currentUserUid);
@@ -79,6 +90,8 @@ export default function ChatPages() {
     initializeChat(userUid);
   }, [currentUserUid, userUid, product, db, user?.displayName, user?.photoURL]);
 
+  console.log(chat, "chat pages");
+
   return (
     <div className='chat'>
       <div className="chat__container">
@@ -86,7 +99,7 @@ export default function ChatPages() {
         {chat ? (
           <div className="chat__messagesInput">
             <Messages combinedId={combinedId} chat={selectedChat} />
-            <Input currentUserUid={currentUserUid} chat={selectedChat} combinedId={combinedId} db={db} storage={storage} />
+            <Input currentUserUid={currentUserUid} chat={selectedChat} db={db} storage={storage} />
           </div>
         ) : (<h1>Відкрийте чат</h1>)}
       </div>

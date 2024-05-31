@@ -24,28 +24,27 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid, sele
                     setChats(chatsArray);
                 }
             }
-
-            console.log(selectedChat.uid === chats[0].uid);
         };
 
         fetchChats();
-    }, [user, db, selectedChat]);
+    }, [user, db]);
 
     const handleSelectChat = (chat) => {
         const combinedId = currentUserUid > chat.uid
             ? `${currentUserUid}_${chat.uid}`
             : `${chat.uid}_${currentUserUid}`;
 
-        // setSelectedChat(chat);
-        setChat(true);
+        console.log(chat,"chat sidebar");
+        setSelectedChat(chat);
 
         // Load the chat data for the selected chat
         getDoc(doc(db, "chats", combinedId)).then(chatDoc => {
             if (chatDoc.exists()) {
                 setChat(chatDoc.data());
+            } else {
+                setChat(null); // Очищення чату, якщо чат не знайдено
             }
         });
-        console.log(chat);
     };
 
     return (
@@ -53,7 +52,7 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid, sele
             <h1>Чати</h1>
             <ul className='sidebar__list'>
                 {chats.map((chat, index) => (
-                    <li key={index} onClick={() => handleSelectChat(chat)} className={selectedChat.uid === chat.uid?'sidebar__item sidebar__item_select':"'sidebar__item'"}>
+                    <li key={index} onClick={() => handleSelectChat(chat)} className={selectedChat?.uid === chat.uid ? 'sidebar__item sidebar__item_select' : 'sidebar__item'}>
                         <img src={chat.photoURL} alt="avatar" />
                         {chat.displayName}
                     </li>

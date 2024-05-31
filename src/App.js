@@ -9,14 +9,14 @@ import AppRouter from './components/AppRouter';
 import { useContext } from 'react';
 import { Context } from '.';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Loader from './components/Loader';
+// import Loader from './components/Loader';
 
 
 function App() {
   const { auth } = useContext(Context);
   const [loading] = useAuthState(auth);
 
-  console.log(loading);
+  // console.log(loading);
 
   if (loading) {
     // return <Loader />
