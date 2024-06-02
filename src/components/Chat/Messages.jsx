@@ -4,13 +4,15 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import '../../styles/chat/messages.scss';
 import { Context } from '../..';
 
-export default function Messages({chat }) {
+export default function Messages({chat,setCombinedId, combinedIdl }) {
     const { auth, db } = useContext(Context);
     const [user] = useAuthState(auth);
     const [messages, setMessages] = useState([]);
     const [recipient, setRecipient] = useState(null);
 
     const combinedId = chat.chatId;
+    console.log(combinedId);
+    setCombinedId(combinedId);
 
     useEffect(() => {
         if (!combinedId) return;

@@ -95,11 +95,11 @@ export default function ChatPages() {
   return (
     <div className='chat'>
       <div className="chat__container">
-        <Sidebar setChat={setChat} selectedChat={selectedChat} setSelectedChat={setSelectedChat} currentUserUid={currentUserUid} />
+        <Sidebar setChat={setChat} setCombinedId={setCombinedId} selectedChat={selectedChat} setSelectedChat={setSelectedChat} currentUserUid={currentUserUid} />
         {chat ? (
           <div className="chat__messagesInput">
-            <Messages combinedId={combinedId} chat={selectedChat} />
-            <Input currentUserUid={currentUserUid} chat={selectedChat} db={db} storage={storage} />
+            <Messages chat={selectedChat} setCombinedId={setCombinedId} combinedId={combinedId}/>
+            <Input currentUserUid={currentUserUid} chat={selectedChat} db={db} storage={storage} combinedId={combinedId}/>
           </div>
         ) : (<h1>Відкрийте чат</h1>)}
       </div>

@@ -57,7 +57,7 @@ export default function Input({ currentUserUid, combinedId, db, storage, userUid
 
     return (
         <div className="inputComponent">
-            {/* <p className='red'>{userUid}</p> */}
+            <p className='red'>{userUid}</p>
             <input
                 type="text"
                 placeholder="Type something..."
