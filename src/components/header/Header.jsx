@@ -42,10 +42,12 @@ export default function Header() {
                     setProductsArr(products);
                 } else {
                     if (showBasket) setError(true);
+                    console.log(error, "true1");
 
                 }
             } catch (error) {
-                if (showBasket) setError(true);
+                if (showBasket) setError(true); console.log(error, "true");
+
             }
         };
 
@@ -71,6 +73,7 @@ export default function Header() {
             }));
             setProductsArr(updatedProducts);
         } catch (error) {
+            console.log(error, "true");
             setError(true)
         }
     };
@@ -86,7 +89,7 @@ export default function Header() {
     return (
         <>
             <header className='header'>
-                {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли" />}
+                {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли1" />}
                 <div className="header__content">
                     <Link to="/" className="header__functional_item">
                         <div className="header__logo">Shop</div>

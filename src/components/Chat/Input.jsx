@@ -13,7 +13,6 @@ export default function Input({ currentUserUid, combinedId, db, storage, userUid
         if (!text.trim() && !img) return;
 
         if (!combinedId) {
-            console.error("Invalid combinedId:", combinedId);
             return;
         }
 

@@ -11,7 +11,6 @@ export default function Messages({chat,setCombinedId, combinedIdl }) {
     const [recipient, setRecipient] = useState(null);
 
     const combinedId = chat.chatId;
-    console.log(combinedId);
     setCombinedId(combinedId);
 
     useEffect(() => {

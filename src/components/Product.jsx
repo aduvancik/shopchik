@@ -60,13 +60,11 @@ export default function Product({ product, loading }) {
     }
   }, [product, user, firestore, storage]);
 
-
   const navigateToProductPage = () => {
     navigate(`product/${encodeURIComponent(product.product.title)}`, {
       state: { product },
     });
   };
-
 
   return (
     <li className="product" onClick={navigateToProductPage}>
