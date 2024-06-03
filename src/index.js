@@ -7,7 +7,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import { getFirestore } from 'firebase/firestore';
-import { BasketProvider } from './utils/context.js/BasketContext';
+import { BasketProvider } from './utils/context/BasketContext';
 // context
 
 // Ініціалізація Firebase

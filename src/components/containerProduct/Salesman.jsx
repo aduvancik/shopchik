@@ -1,18 +1,19 @@
 import React, { useContext, useState } from 'react';
 import "../../styles/salesMan.scss";
 import { formatDate } from '../../utils/date';
-import { BsBasket2 } from 'react-icons/bs';
+// import { BsBasket2 } from 'react-icons/b';
 import { Context } from '../..';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Modal from '../Modal';
 import { useNavigate } from 'react-router-dom';
 import { CHAT_ROUTE } from '../../utils/consts';
+import { useBasket } from '../../utils/context/BasketContext';
+import { BsBasket2 } from 'react-icons/bs';
 // Basket context
-import { useBasket } from '../../context/BasketContext'; // замініть на ваш шлях до BasketContext
+// import { useBasket } from '../../context/BasketContext'; // замініть на ваш шлях до BasketContext
 
 export default function Salesman({ product }) {
   const { auth, firestore } = useContext(Context);
-  const [user] = useAuthState(auth);
   const [error, setError] = useState(false);
   const [phone, setPhone] = useState("Показати телефон");
   const navigate = useNavigate();

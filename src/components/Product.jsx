@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsBasket2 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-//style
 import "../styles/product.scss";
-//
 import Loader from "./Loader";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { formatDate } from "../utils/date";
+import { useBasket } from "../utils/context/BasketContext";
 import Modal from "./Modal";
-// Basket context
-import { useBasket } from '../context/BasketContext'; // замініть на ваш шлях до BasketContext
 
 export default function Product({ product, loading }) {
   const { auth, storage } = useContext(Context);
@@ -18,7 +15,7 @@ export default function Product({ product, loading }) {
   const [photoURL, setPhotoURL] = useState(null);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const { basket, addToBasket, loading: basketLoading } = useBasket();
+  const { basket, addToBasket, removeFromBasket } = useBasket();
 
   useEffect(() => {
     const getPhotoURL = async () => {
@@ -36,6 +33,17 @@ export default function Product({ product, loading }) {
     }
   }, [product, storage]);
 
+  const isInBasket = basket.some(item => item.id === product.uid);
+
+  const handleBasketClick = (e) => {
+    e.stopPropagation();
+    if (isInBasket) {
+      removeFromBasket(product.uid);
+    } else {
+      addToBasket(product);
+    }
+  };
+
   const navigateToProductPage = () => {
     navigate(`product/${encodeURIComponent(product.product.title)}`, {
       state: { product },
@@ -52,13 +60,7 @@ export default function Product({ product, loading }) {
           {photoURL && <img src={photoURL} alt={product.product.title} className="product__img" />}
           <div className="product__info">
             <h3 className="product__infoTitle">{product.product.title}</h3>
-            <BsBasket2
-              onClick={(e) => {
-                e.stopPropagation();
-                addToBasket(product.uid);
-              }}
-              className={basket.includes(product.uid) ? "basket__active basket-icon" : "basket-icon"}
-            />
+            <BsBasket2 onClick={handleBasketClick} className={isInBasket ? "basket__active basket-icon" : "basket-icon"} />
             <p className="product__price">{product.product.price} грн</p>
             <span className="product__place-data">
               <p>{product.product.categori}</p>

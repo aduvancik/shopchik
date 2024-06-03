@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "../styles/profilePages.scss";
 import Product from '../components/Product';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Context } from '..';
 
-export default function ProfilePages({products}) {
+export default function ProfilePages() {
+  const { auth, firestore } = useContext(Context);
+
+  const [user] = useAuthState(auth);
+
+  const products=[];
   return (
     <div className='profilePages'>
       <div className='profilePages__ti'>
-        <h1 className='profilePages__title'>Олег Кривогуб</h1>
+        <h1 className='profilePages__title'>{user.displayName}</h1>
         <div className='productsList' id="productsList">
             <div className="productsList__container">
                 <h1 className="productsList__title">Ваші оголошення</h1>
