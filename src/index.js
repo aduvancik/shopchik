@@ -7,7 +7,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import { getFirestore } from 'firebase/firestore';
-import { BasketProvider } from './utils/context/BasketContext';
 // context
 
 // Ініціалізація Firebase
@@ -31,8 +30,6 @@ const db = getFirestore();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Context.Provider value={{ firebase, auth, firestore, storage, db }}>
-    <BasketProvider> {/* Додайте BasketProvider */}
       <App />
-    </BasketProvider>
   </Context.Provider>
 );

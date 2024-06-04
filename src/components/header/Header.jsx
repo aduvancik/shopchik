@@ -6,6 +6,7 @@ import { BsChat, BsBasket2 } from "react-icons/bs";
 import { MdSupervisorAccount } from "react-icons/md";
 import { BiMessageAltAdd } from "react-icons/bi";
 import { CiLogin } from "react-icons/ci";
+//
 import { Link, NavLink } from 'react-router-dom';
 import { Context } from '../..';
 //firebase
@@ -25,33 +26,36 @@ export default function Header() {
 
     useEffect(() => {
         const fetchCart = async () => {
-            if (user && typeof user.uid === 'string') {
-                try {
-                    const cartDoc = await firestore.collection("carts").doc(user.uid).get();
-                    if (cartDoc.exists) {
-                        const cartData = cartDoc.data().products;
-                        const products = await Promise.all(cartData.map(async (productId) => {
-                            const productDoc = await firestore.collection("products").doc(productId).get();
-                            if (productDoc.exists) {
-                                return { id: productDoc.id, ...productDoc.data() };
-                            } else {
-                                console.log("Product does not exist with id:", productId);
-                                return null;
-                            }
-                        }));
-                        setProductsArr(products);
-                    } else {
-                        if (showBasket) setError(true);
-                    }
-                } catch (error) {
+            try {
+                const cartDoc = await firestore.collection("carts").doc(user.uid).get();
+                if (cartDoc.exists) {
+                    const cartData = cartDoc.data().products;
+                    const products = await Promise.all(cartData.map(async (productId) => {
+                        const productDoc = await firestore.collection("products").doc(productId).get();
+                        if (productDoc.exists) {
+                            return { id: productDoc.id, ...productDoc.data() };
+                        } else {
+                            console.log("Product does not exist with id:", productId);
+                            return null;
+                        }
+                    }));
+                    setProductsArr(products);
+                } else {
                     if (showBasket) setError(true);
-                    console.error('Error fetching cart data:', error);
+                    console.log(error, "true1");
+
                 }
+            } catch (error) {
+                if (showBasket) setError(true); console.log(error, "true");
+
             }
         };
 
         fetchCart();
-    }, [showBasket, user, firestore]);
+    }, [showBasket]);
+
+
+
 
     const handleRemoveFromCart = async (event, productId) => {
         event.stopPropagation();
@@ -60,6 +64,7 @@ export default function Header() {
             await firestore.collection("carts").doc(user.uid).update({
                 products: firebase.firestore.FieldValue.arrayRemove(productId)
             });
+            // Оновлюємо список продуктів у корзині після видалення
             const updatedCartDoc = await firestore.collection("carts").doc(user.uid).get();
             const updatedCartData = updatedCartDoc.data();
             const updatedProducts = await Promise.all(updatedCartData.products.map(async (productId) => {
@@ -68,22 +73,23 @@ export default function Header() {
             }));
             setProductsArr(updatedProducts);
         } catch (error) {
-            console.error('Error removing product from cart:', error);
-            setError(true);
+            console.log(error, "true");
+            setError(true)
         }
     };
 
     const handleClose = (event) => {
         event.stopPropagation();
-        setShowBasket(false);
+        setShowBasket(false)
     };
-
     const handleShow = () => setShowBasket(!showBasket);
+
+
 
     return (
         <>
             <header className='header'>
-                {error && <Modal setError={setError} text="Щось пішло не так" />}
+                {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли1" />}
                 <div className="header__content">
                     <Link to="/" className="header__functional_item">
                         <div className="header__logo">Shop</div>
@@ -112,14 +118,15 @@ export default function Header() {
                                 <span onClick={() => auth.signOut()}>Вийти</span>
                             </div>
                             :
-                            <NavLink to={LOGIN_ROUTE} className="header__functional_item">
+                            <NavLink to={LOGIN_ROUTE} className="header__functional_item" >
                                 <CiLogin className="header__icon" />
                                 <span>Логин</span>
                             </NavLink>
+
                         }
                     </div>
                 </div>
-            </header>
+            </header >
         </>
-    );
+    )
 }

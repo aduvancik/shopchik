@@ -1,21 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsBasket2 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+//style
 import "../styles/product.scss";
+//
 import Loader from "./Loader";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { formatDate } from "../utils/date";
-import { useBasket } from "../utils/context/BasketContext";
+import { addBasket } from "../utils/addBasket";
 import Modal from "./Modal";
+//utils
 
 export default function Product({ product, loading }) {
-  const { auth, storage } = useContext(Context);
+  const { auth, firestore, storage } = useContext(Context);
   const [user] = useAuthState(auth);
+  const [basket, setBasket] = useState(false);
   const [photoURL, setPhotoURL] = useState(null);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const { basket, addToBasket, removeFromBasket } = useBasket();
 
   useEffect(() => {
     const getPhotoURL = async () => {
@@ -31,18 +34,31 @@ export default function Product({ product, loading }) {
     if (product.product.photos && product.product.photos.length > 0) {
       getPhotoURL();
     }
-  }, [product, storage]);
 
-  const isInBasket = basket.some(item => item.id === product.uid);
+    // Перевіряємо, чи продукт є у кошику користувача під час завантаження сторінки
+    const checkBasket = async () => {
+      try {
+        const userCartRef = firestore.collection("carts").doc(user.uid);
+        const userCartDoc = await userCartRef.get();
+        if (userCartDoc.exists) {
+          const cartData = userCartDoc.data();
+          if (cartData.products.includes(product.uid)) {
+            setBasket(true);
+          } else {
+            setBasket(false);
+          }
+        } else {
+          setBasket(false);
+        }
+      } catch (error) {
+        console.error("Помилка перевірки продукту у кошику користувача:", error);
+      }
+    };
 
-  const handleBasketClick = (e) => {
-    e.stopPropagation();
-    if (isInBasket) {
-      removeFromBasket(product.uid);
-    } else {
-      addToBasket(product);
+    if (user && product) {
+      checkBasket();
     }
-  };
+  }, [product, user, firestore, storage]);
 
   const navigateToProductPage = () => {
     navigate(`product/${encodeURIComponent(product.product.title)}`, {
@@ -60,7 +76,7 @@ export default function Product({ product, loading }) {
           {photoURL && <img src={photoURL} alt={product.product.title} className="product__img" />}
           <div className="product__info">
             <h3 className="product__infoTitle">{product.product.title}</h3>
-            <BsBasket2 onClick={handleBasketClick} className={isInBasket ? "basket__active basket-icon" : "basket-icon"} />
+            <BsBasket2 onClick={(e) => addBasket(e, product, setBasket, basket, user, firestore, setError)} className={basket ? "basket__active basket-icon" : "basket-icon"} />
             <p className="product__price">{product.product.price} грн</p>
             <span className="product__place-data">
               <p>{product.product.categori}</p>
