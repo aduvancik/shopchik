@@ -109,6 +109,18 @@ export default function AddProduct() {
           createdAt: firebase.firestore.Timestamp.now()
         });
 
+        await firestore.collection("users").doc(user.uid).collection("products").doc(uid).set({
+          uid: uid,
+          uidUser: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          product: {
+            ...productData,
+            photos: photoURLs,
+          },
+          createdAt: firebase.firestore.Timestamp.now()
+        });
+
         // Переходимо на домашню сторінку
         navigate(HOME_ROUTE);
         setLoading(false);
