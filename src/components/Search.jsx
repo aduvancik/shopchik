@@ -58,22 +58,22 @@ export default function Search(props) {
               className="search__input input"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <input
+            {/* <input
               className="search__input input "
               type="text"
               placeholder="Уся Україна"
-            />
+            /> */}
             <button type="submit" onClick={(e) => submit(e)} className="search__button_search button">
               <span>Пошук</span>
               <AiOutlineSearch />
             </button>
           </div>
-          <div className="search__container">
+          <div className="search__container search__container_price">
             <p>ціна: </p>
             <input className="input search__price" type="number" placeholder="від:" onChange={(e) => setMinPrice(e.target.value)} />
             <input className="input search__price" type="number" placeholder="до:" onChange={(e) => setMaxPrice(e.target.value)} />
             <div className="dropdown">
-              <button type='button' className="button" onClick={showMenu}>
+              <button type='button' className="button search__sorted" onClick={showMenu}>
                 {selectedCategory ? selectedCategory : "показувати спочатку"}
               </button>
               <div className={`dropdown-content ${showDropDown ? "dropdown-content-click" : ""}`}>

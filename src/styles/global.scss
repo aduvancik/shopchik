@@ -1,13 +1,14 @@
 @import "react-alice-carousel/lib/scss/alice-carousel.scss";
-.input{
+
+.input {
     width: 100%;
     padding: 10px;
-    background-color:rgb(242, 244, 245);
-    border:#002F34 2px solid;
+    background-color: rgb(242, 244, 245);
+    border: #002F34 2px solid;
     border-bottom: 4px #002F34 solid;
     border-right: 4px #002F34 solid;
     border-radius: 5px;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     font-size: 20px;
 
     &::placeholder {
@@ -35,13 +36,13 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #000;
     font-weight: bold;
     margin: 0 auto;
-  }
+}
 
 .title-h2 {
     font-size: 21px;
     color: rgb(0, 47, 52);
     font-weight: bold;
-  }
+}
 
 label {
     font-size: 16px;
@@ -55,13 +56,13 @@ label {
     cursor: pointer;
 
     &:hover {
-      transform: scale(1.1);
+        transform: scale(1.1);
     }
-  }
+}
 
-  .basket__active {
+.basket__active {
     color: red;
-  }
+}
 
 .red {
     color: red;
@@ -89,5 +90,18 @@ label {
         background-color: white;
         color: #000;
         transform: scale(1.05);
+    }
+}
+
+.loyout {
+    max-width: 1200px;
+    margin: 100px auto;
+    background: #fff;
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 750px) {
+    .loyout {
+        margin: 50px auto;
     }
 }

@@ -100,7 +100,7 @@ export default function ChatPages() {
             <Messages chat={selectedChat} setCombinedId={setCombinedId} combinedId={combinedId}/>
             <Input currentUserUid={currentUserUid} chat={selectedChat} db={db} storage={storage} combinedId={combinedId}/>
           </div>
-        ) : (<h1>Відкрийте чат</h1>)}
+        ) : (<h1 style={{margin: "0 auto", display: "flex", alignItems: "center"}}>Виберіть чат</h1>)}
       </div>
     </div>
   );

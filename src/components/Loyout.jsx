@@ -6,7 +6,7 @@ function Loyout() {
   return (
     <>
       <Header />
-      <div style={{ maxWidth: "1200px", margin: "100px auto", background: "#fff", marginBottom: "100px" }}>
+      <div className='loyout'>
         <Outlet />
       </div>
     </>

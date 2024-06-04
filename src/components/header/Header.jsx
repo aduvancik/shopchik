@@ -23,6 +23,7 @@ export default function Header() {
     const [productsArr, setProductsArr] = useState([]);
     const { firestore } = useContext(Context);
     const [error, setError] = useState(false);
+    const [showHeader, setShowHeader] = useState(false);
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -33,17 +34,17 @@ export default function Header() {
                     const products = await Promise.all(cartData.map(async (productId) => {
                         const productDoc = await firestore.collection("products").doc(productId).get();
                         if (productDoc.exists) {
-                            console.log("products",productDoc.data(),"products",productDoc.id);
+                            console.log("products", productDoc.data(), "products", productDoc.id);
                             /////
                             return { id: productDoc.id, ...productDoc.data() };
                         } else {
                             console.log("Product does not exist with id:", productId);
                             return null;
-                        }                         
-                        console.log(productDoc,"Produc");
+                        }
+                        console.log(productDoc, "Produc");
                     }));
                     /////
-                    console.log(products,"Produc");
+                    console.log(products, "Produc");
 
                     setProductsArr(products);
                 } else {
@@ -91,17 +92,15 @@ export default function Header() {
     };
     const handleShow = () => setShowBasket(!showBasket);
 
-
-
     return (
         <>
             <header className='header'>
                 {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли1" />}
                 <div className="header__content">
-                    <Link to="/" className="header__functional_item">
-                        <div className="header__logo">Shop</div>
+                    <Link to="/" className="header__functional_item header__functional_logo">
+                        <div className="header__logo">OLMX</div>
                     </Link>
-                    <div className="header__functional">
+                    <div className={`header__functional ${showHeader ? "header__functional_show" : "header__functional"}`}>
                         <NavLink to={CHAT_ROUTE} className="header__functional_item">
                             <BsChat className='header__icon' />
                             <span>Повідомлення</span>
@@ -131,6 +130,15 @@ export default function Header() {
                             </NavLink>
 
                         }
+                    </div>
+                    <div className="header__burgerMenu" onClick={() => setShowHeader(!showHeader)}>
+                        <svg id="hamburger" className={`header__toggle-svg ${showHeader ? "svg-hover" : ""}`} viewBox="0 0 60 40" width="40" height="40">
+                            <g stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                <path id="top-line" d="M10,10 L50,10 Z"></path>
+                                <path id="middle-line" d="M10,20 L50,20 Z"></path>
+                                <path id="bottom-line" d="M10,30 L50,30 Z"></path>
+                            </g>
+                        </svg>
                     </div>
                 </div>
             </header >
