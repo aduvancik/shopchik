@@ -15,21 +15,57 @@
         flex-direction: column;
         gap: 20px;
         padding: 10px;
+        overflow-y: scroll;
+        height: 100%;
     }
 
-    &__item{
+    &__item {
         display: flex;
         align-items: center;
         font-size: 20px;
         cursor: pointer;
-       
+        gap: 10px;
+        border-radius: 10px;
+        padding: 3px;
+
         &_select {
-            background-color: red;
+            background-color: #f5f5f5;
         }
-        img{
+
+        img {
             border-radius: 50%;
             width: 50px;
             margin-left: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .sidebar {
+
+
+        h1 {
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        &__list {
+            gap: 10px;
+        }
+
+        &__item {
+            font-size: 16px;
+            gap: 10px;
+            border-radius: 10px;
+            padding: 10px 3px;
+
+
+
+            img {
+                border-radius: 50%;
+                width: 30px;
+                margin-left: 3px;
+            }
         }
     }
 }

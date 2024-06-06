@@ -60,9 +60,9 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid, sele
       <ul className='sidebar__list'>
         {chats.map((chat, index) => (
           <li key={index} onClick={() => handleSelectChat(chat)} className={selectedChat?.uid === chat.uid ? 'sidebar__item sidebar__item_select' : 'sidebar__item'}>
-            <img src={chat.photoURL} alt="avatar" />
-            {chat.displayName}
-          </li>
+          <img src={chat.photoURL} alt="avatar" />
+          {chat.displayName}
+        </li>
         ))}
       </ul>
     </div>

@@ -105,3 +105,19 @@ label {
         margin: 50px auto;
     }
 }
+
+@media screen and (max-width: 525px) {
+    .button {
+        padding: 10px 10px;
+        font-size: 14px;
+    }
+
+    .input {
+        padding: 5px;
+        font-size: 16px;
+
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+}
