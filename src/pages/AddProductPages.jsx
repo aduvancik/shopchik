@@ -100,6 +100,7 @@ export default function AddProduct() {
         await firestore.collection("products").doc(uid).set({
           uid: uid,
           uidUser: user.uid,
+          view:[],
           displayName:user.displayName,
           photoURL: user.photoURL,
           product: {
@@ -112,6 +113,7 @@ export default function AddProduct() {
         await firestore.collection("users").doc(user.uid).collection("products").doc(uid).set({
           uid: uid,
           uidUser: user.uid,
+          view:[],
           displayName: user.displayName,
           photoURL: user.photoURL,
           product: {

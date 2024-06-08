@@ -114,12 +114,17 @@
 @media screen and (max-width: 700px) {
     .header {
 
+        &__content {
+            padding: 1px;
+
+        }
+
         &__burgerMenu {
             display: block;
             color: #fff;
 
             svg {
-                width: 120px;
+                width: max-content;
             }
 
             #top-line,

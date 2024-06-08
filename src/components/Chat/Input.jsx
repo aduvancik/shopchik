@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+//firebase
 import { Timestamp, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+//react-icon
 import { MdAddPhotoAlternate } from 'react-icons/md';
+import { IoSend } from "react-icons/io5";
+//style
 import '../../styles/chat/input.scss';
 
 export default function Input({ currentUserUid, combinedId, db, storage, userUid, chat }) {
@@ -23,7 +27,7 @@ export default function Input({ currentUserUid, combinedId, db, storage, userUid
             recipientName: chat.displayName,
             recipientPhoto: chat.photoURL,
             date: Timestamp.now()
-          };
+        };
 
         const chatDocRef = doc(db, 'chats', combinedId);
 
@@ -74,7 +78,8 @@ export default function Input({ currentUserUid, combinedId, db, storage, userUid
                 <label htmlFor="file">
                     <MdAddPhotoAlternate className="inputComponent__icon" />
                 </label>
-                <button onClick={handleSend} className='button'>Надіслати</button>
+                <button onClick={handleSend} className='inputComponent__button'><IoSend />
+                </button>
             </div>
         </div>
     );

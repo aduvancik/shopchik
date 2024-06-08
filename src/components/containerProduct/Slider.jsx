@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from "react";
+//style
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "../../styles/slider.scss";
+//
 import { Arrow } from "./Arrow";
 
 export default function Slidere({ listPhotoSrc }) {

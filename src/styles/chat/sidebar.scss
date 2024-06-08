@@ -62,10 +62,44 @@
 
 
             img {
-                border-radius: 50%;
                 width: 30px;
                 margin-left: 3px;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sidebar {
+        h1 {
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        &__list {
+            gap: 10px;
+        }
+
+        &__item {
+            font-size: 12px;
+            gap: 5px;
+            padding: 5px 3px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sidebar {
+        &__list {
+            gap: 5px;
+        }
+
+        &__item {
+            font-size: 10px;
         }
     }
 }

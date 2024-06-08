@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react'
-import "../../styles/salesMan.scss";
+import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../utils/date';
+//react icon
 import { BsBasket2 } from 'react-icons/bs';
 import { addBasket } from '../../utils/addBasket';
+//
 import { Context } from '../..';
 import { useAuthState } from 'react-firebase-hooks/auth';
+//
 import Modal from '../Modal';
-import { useNavigate } from 'react-router-dom';
 import { CHAT_ROUTE } from '../../utils/consts';
+//style
+import "../../styles/salesMan.scss";
 
 export default function Salesman({ product }) {
   const { auth, firestore } = useContext(Context);
@@ -35,7 +39,7 @@ export default function Salesman({ product }) {
       <h1 className='salesMan__title'> {product.product.title}</h1>
       <p className='salesMan__price'>{product.product.price} грн.</p>
       <div className='salesMan__container-button'>
-        <button type='salesMan__button_message button' className='button' onClick={handleNavigateToChat}>Повідомлення</button>
+        <button type='salesMan__button_message button' className='button salesMan__button_send' onClick={handleNavigateToChat}>Повідомлення</button>
         <button className='salesMan__button_tel button' onClick={() => setPhone(product.product.telephone)}>{phone}</button>
       </div>
 

@@ -73,3 +73,13 @@
   fill: rgba(255, 255, 255, 0.5);
   display: none;
 }
+
+@media screen and (max-width: 670px) {}
+
+@media screen and (max-width: 500px) {
+  .slider__container {
+    width: 100%;
+    padding: 30px;
+    height: max-content;
+  }
+}

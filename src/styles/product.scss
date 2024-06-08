@@ -28,6 +28,9 @@
 
   &__info {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   &__infoTitle {
@@ -44,12 +47,13 @@
     font-weight: bold;
     color: #2ecc71;
     margin: 10px 0;
-
+    text-align: start;
   }
 
   &__place-data {
     font-size: 14px;
     color: #777;
+    text-align: start;
 
     p {
       margin: 3px;

@@ -55,7 +55,7 @@ export default function ProfilePages() {
 
       fetchUserData();
     }
-  }, [user, firestore]);
+  }, [user, firestore,file]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -119,7 +119,15 @@ export default function ProfilePages() {
       <div className='profilePages__title'>
         <form className='profilePages__form' onSubmit={handleUpdateProfile}>
           <div className='profilePages__inputs'>
-
+            <div className='profilePages__formContainer'>
+              <label htmlFor="photoFile"><FaPenAlt className='profilePages__icon' /></label>
+              <img src={previewURL || photoURL} alt="avatar" className='profilePages__avatar' />
+              <input
+                type="file"
+                id="photoFile"
+                onChange={handleFileChange}
+              />
+            </div>
             <div className='profilePages__formContainer'>
               <label htmlFor="displayName"><FaPenAlt className='profilePages__icon' onClick={() => setShowDisplayName(!showDisplayName)} /></label>
               {showDisplayName ?
@@ -135,15 +143,7 @@ export default function ProfilePages() {
 
 
             </div>
-            <div className='profilePages__formContainer'>
-              <label htmlFor="photoFile"><FaPenAlt className='profilePages__icon' /></label>
-              <img src={previewURL || photoURL} alt="avatar" className='profilePages__avatar' />
-              <input
-                type="file"
-                id="photoFile"
-                onChange={handleFileChange}
-              />
-            </div>
+
           </div>
           {updating && <Loader />}
           <div className="profilePages__buttons">
