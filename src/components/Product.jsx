@@ -21,18 +21,18 @@ export default function Product({ product, loading }) {
 
   useEffect(() => {
     const getPhotoURL = async () => {
-      try {
-        const photoRef = storage.refFromURL(product.product.photos[0]);
-        const url = await photoRef.getDownloadURL();
-        setPhotoURL(url);
-      } catch (error) {
-        console.error("Помилка отримання URL-адреси фото з Firebase Storage:", error);
+      if (product.product && product.product.photos && product.product.photos.length > 0) {
+        try {
+          const photoRef = storage.refFromURL(product.product.photos[0]);
+          const url = await photoRef.getDownloadURL();
+          setPhotoURL(url);
+        } catch (error) {
+          console.error("Помилка отримання URL-адреси фото з Firebase Storage:", error);
+        }
       }
     };
 
-    if (product.product.photos && product.product.photos.length > 0) {
-      getPhotoURL();
-    }
+    getPhotoURL();
 
     const checkBasket = async () => {
       try {
@@ -45,6 +45,7 @@ export default function Product({ product, loading }) {
           setBasket(false);
         }
       } catch (error) {
+        console.error("Error checking basket:", error);
       }
     };
 
@@ -54,10 +55,16 @@ export default function Product({ product, loading }) {
   }, [product, user, firestore, storage]);
 
   const navigateToProductPage = () => {
-    navigate(`/product/${encodeURIComponent(product.product.title)}`, {
-      state: { product },
-    });
+    if (product.product) {
+      navigate(`/product/${encodeURIComponent(product.product.title)}`, {
+        state: { product },
+      });
+    }
   };
+
+  if (!product || !product.product) {
+    return null; // or some fallback UI
+  }
 
   return (
     <li className="product" onClick={navigateToProductPage}>

@@ -63,3 +63,12 @@
         }
     }
 }
+
+.productsList__products_container{
+    position: relative;
+    .productsList__delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

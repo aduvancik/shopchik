@@ -91,7 +91,6 @@ export default function Header() {
     return (
         <>
             <header className='header'>
-                {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли1" />}
                 <div className="header__content">
                     <Link to="/" className="header__functional_item header__functional_logo" onClick={() => setShowHeader(false)}>
                         <div className="header__logo">OLMX</div>

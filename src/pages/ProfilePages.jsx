@@ -1,12 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import "../styles/profilePages.scss";
-import Product from '../components/Product';
-import { Context } from '..';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import Loader from '../components/Loader';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/storage';
+//react-icon
+import { IoMdCloseCircle } from 'react-icons/io';
 import { FaPenAlt } from "react-icons/fa";
+//
+import { Context } from '..';
+//firebase
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from 'firebase/compat/app';
+//components
+import Loader from '../components/Loader';
+import Product from '../components/Product';
+import 'firebase/compat/storage';
+//style
+import "../styles/profilePages.scss";
 
 export default function ProfilePages() {
   const { auth, firestore } = useContext(Context);
@@ -57,6 +63,16 @@ export default function ProfilePages() {
     }
   }, [user, firestore, file]);
 
+  const handleDeleteProduct = async (productId) => {
+    try {
+      await firestore.collection("products").doc(productId).delete();
+      await firestore.collection("users").doc(user.uid).collection("products").doc(productId).delete();
+      setProducts(products.filter(product => product.id !== productId));
+    } catch (error) {
+      console.error("Error deleting product: ", error);
+    }
+  };
+
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setUpdating(true);
@@ -87,14 +103,11 @@ export default function ProfilePages() {
         setFile(null);
         setUpdating(false);
         setShowDisplayName(true);
-
-
       }
     } catch (error) {
       console.error("Error updating profile: ", error);
       setUpdating(false);
       setShowDisplayName(true);
-
     }
   };
 
@@ -140,17 +153,13 @@ export default function ProfilePages() {
                   className='input'
                 />
               }
-
-
             </div>
-
           </div>
           {updating && <Loader />}
           <div className="profilePages__buttons">
             <button type="submit" className='button' disabled={updating}>Зберегти зміни</button>
             <button type="button" className='button' onClick={handleCancel}>Скасувати зміни</button>
           </div>
-
         </form>
         <div className='productsList' id="productsList">
           <div className="productsList__container">
@@ -173,8 +182,8 @@ export default function ProfilePages() {
             {products.length > 0 ? (
               <ul className="productsList__products">
                 {products.map((product) => (
-                  <div>
-                    <button>видалити</button>
+                  <div key={product.id} className='productsList__products_container'>
+                    <IoMdCloseCircle onClick={() => handleDeleteProduct(product.id)}className='productsList__delete'/>
                     <Product
                       key={product.id}
                       product={product}
