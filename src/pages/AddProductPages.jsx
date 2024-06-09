@@ -101,6 +101,7 @@ export default function AddProduct() {
           uid: uid,
           uidUser: user.uid,
           view:[],
+          basket:[],
           displayName:user.displayName,
           photoURL: user.photoURL,
           product: {
@@ -114,6 +115,7 @@ export default function AddProduct() {
           uid: uid,
           uidUser: user.uid,
           view:[],
+          basket:[],
           displayName: user.displayName,
           photoURL: user.photoURL,
           product: {

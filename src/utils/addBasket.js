@@ -1,11 +1,8 @@
-import firebase from 'firebase/compat/app';
-
-export const addBasket = async (event, product, setBasket, basket, user, firestore, setError) => {
+export const addBasket = async (event, product, setBasket, user, firestore, setError) => {
   event.stopPropagation();
 
   if (!user) {
     setError(true);
-    console.error("Користувач не ввійшов у систему.");
     return;
   }
 
@@ -13,27 +10,42 @@ export const addBasket = async (event, product, setBasket, basket, user, firesto
     const userCartRef = firestore.collection("carts").doc(user.uid);
     const userCartDoc = await userCartRef.get();
 
+    const productRef = firestore.collection("products").doc(product.uid);
+    const productDoc = await productRef.get();
+
     if (!userCartDoc.exists) {
+      // Створення нового документу кошика
       await userCartRef.set({ products: [product.uid] });
       setBasket(true);
-      console.log("Продукт додано до кошика.");
+
+      // Додавання UID користувача до масиву корзини в документі продукту
+      let productBasket = [];
+      if (productDoc.exists) {
+        productBasket = Array.isArray(productDoc.data().basket) ? productDoc.data().basket : [];
+      }
+      productBasket.push(user.uid);
+      await productRef.update({ basket: productBasket });
     } else {
       const cartData = userCartDoc.data();
       const updatedProducts = cartData.products.includes(product.uid)
-        ? cartData.products.filter((productId) => productId !== product.uid)
-        : [...cartData.products, product.uid];
+        ? cartData.products.filter((productId) => productId !== product.uid) // Видалення продукту з кошика
+        : [...cartData.products, product.uid]; // Додавання продукту до кошика
 
       await userCartRef.update({ products: updatedProducts });
-      setBasket(!basket);
+      setBasket(!cartData.products.includes(product.uid));
 
-      if (!cartData.products.includes(product.uid)) {
-        const productRef = firestore.collection("products").doc(product.uid);
-        await productRef.update({ basket: 1 });
-        console.log("Продукт оновлено.");
+      // Оновлення масиву корзини в документі продукту
+      let productBasket = Array.isArray(productDoc.data().basket) ? productDoc.data().basket : [];
+      if (cartData.products.includes(product.uid)) {
+        // Видалення UID користувача з масиву корзини
+        productBasket = productBasket.filter((uid) => uid !== user.uid);
+      } else {
+        // Додавання UID користувача до масиву корзини
+        productBasket.push(user.uid);
       }
+      await productRef.update({ basket: productBasket });
     }
   } catch (error) {
     setError(true);
-    console.error("Помилка оновлення кошика користувача:", error);
   }
 };

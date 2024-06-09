@@ -7,6 +7,7 @@ import Sidebar from "../components/Chat/Sidebar";
 import Input from "../components/Chat/Input";
 import Messages from "../components/Chat/Messages";
 import "../styles/chat/chatPages.scss";
+import Modal from "../components/Modal";
 
 export default function ChatPages() {
   const { auth, storage, db } = useContext(Context);
@@ -18,6 +19,8 @@ export default function ChatPages() {
   const currentUserUid = user?.uid;
   const userUid = product?.uidUser;
   const [combinedId, setCombinedId] = useState("");
+  const [error, setError] = useState(false);
+
 
   useEffect(() => {
     if (!currentUserUid || !userUid) return;
@@ -34,13 +37,11 @@ export default function ChatPages() {
 
         if (!chatDoc.exists()) {
           if (!product) {
-            console.error("Дані продукту відсутні у location.state");
-            return;
+            setError(true);
+                    return;
           }
 
           if (!product.displayName || !product.photoURL) {
-            console.log(product);
-            console.error("Недостатньо даних для створення чату");
             return;
           }
 
@@ -83,7 +84,7 @@ export default function ChatPages() {
           uid: userUid
         });
       } catch (err) {
-        console.error("Помилка при створенні чату: ", err);
+        setError(true);
       }
     };
 
@@ -93,6 +94,7 @@ export default function ChatPages() {
 
   return (
     <div className='chat'>
+                {error && <Modal setError={setError} text="Щось пішло не так" />}
       <div className="chat__container">
         <Sidebar setChat={setChat} setCombinedId={setCombinedId} selectedChat={selectedChat} setSelectedChat={setSelectedChat} currentUserUid={currentUserUid} />
         {chat ? (

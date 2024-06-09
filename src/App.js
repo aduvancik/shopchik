@@ -16,7 +16,6 @@ function App() {
   const { auth } = useContext(Context);
   const [loading] = useAuthState(auth);
 
-  // console.log(loading);
 
   if (loading) {
     // return <Loader />

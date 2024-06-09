@@ -19,7 +19,6 @@ export default function AddPhoto(props) {
 
   const handleDeleteClick = () => {
     onImageDeleted(url, photo);
-    // console.log(photo);
   };
 
   return (

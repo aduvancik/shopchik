@@ -34,27 +34,21 @@ export default function Header() {
                     const products = await Promise.all(cartData.map(async (productId) => {
                         const productDoc = await firestore.collection("products").doc(productId).get();
                         if (productDoc.exists) {
-                            console.log("products", productDoc.data(), "products", productDoc.id);
-                            /////
                             return { id: productDoc.id, ...productDoc.data() };
                         } else {
-                            console.log("Product does not exist with id:", productId);
+                            setError(true);
                             return null;
                         }
-                        console.log(productDoc, "Produc");
                     }));
-                    /////
-                    console.log(products, "Produc");
 
                     setProductsArr(products);
                 } else {
                     if (showBasket) setError(true);
-                    console.log(error, "true1");
 
                 }
             } catch (error) {
-                if (showBasket) setError(true); console.log(error, "true");
-                //помилка
+                if (showBasket)
+                    setError(true);
 
             }
         };
@@ -81,7 +75,6 @@ export default function Header() {
             }));
             setProductsArr(updatedProducts);
         } catch (error) {
-            console.log(error, "true");
             setError(true)
         }
     };
@@ -91,7 +84,6 @@ export default function Header() {
         setShowBasket(false)
     };
     const handleShow = () => {
-        // setShowHeader(false);
         setShowBasket(!showBasket)
     }
         ;

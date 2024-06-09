@@ -24,7 +24,6 @@ export default function Slidere({ listPhotoSrc }) {
 
   const reloadSlider = () => {
     setSliderKey((prevKey) => prevKey + 1);
-    console.log(sliderKey);
   };
 
   return (

@@ -10,7 +10,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { formatDate } from "../utils/date";
 import { addBasket } from "../utils/addBasket";
 import Modal from "./Modal";
-//utils
 
 export default function Product({ product, loading }) {
   const { auth, firestore, storage } = useContext(Context);
@@ -35,23 +34,17 @@ export default function Product({ product, loading }) {
       getPhotoURL();
     }
 
-    // Перевіряємо, чи продукт є у кошику користувача під час завантаження сторінки
     const checkBasket = async () => {
       try {
         const userCartRef = firestore.collection("carts").doc(user.uid);
         const userCartDoc = await userCartRef.get();
         if (userCartDoc.exists) {
           const cartData = userCartDoc.data();
-          if (cartData.products.includes(product.uid)) {
-            setBasket(true);
-          } else {
-            setBasket(false);
-          }
+          setBasket(cartData.products.includes(product.uid));
         } else {
           setBasket(false);
         }
       } catch (error) {
-        console.error("Помилка перевірки продукту у кошику користувача:", error);
       }
     };
 
@@ -61,7 +54,7 @@ export default function Product({ product, loading }) {
   }, [product, user, firestore, storage]);
 
   const navigateToProductPage = () => {
-    navigate(`product/${encodeURIComponent(product.product.title)}`, {
+    navigate(`/product/${encodeURIComponent(product.product.title)}`, {
       state: { product },
     });
   };
@@ -72,11 +65,11 @@ export default function Product({ product, loading }) {
         <Loader />
       ) : (
         <>
-          {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли" />}
+          {error && <Modal setError={setError} text="Щось пішло не так" />}
           {photoURL && <img src={photoURL} alt={product.product.title} className="product__img" />}
           <div className="product__info">
             <h3 className="product__infoTitle">{product.product.title}</h3>
-            <BsBasket2 onClick={(e) => addBasket(e, product, setBasket, basket, user, firestore, setError)} className={basket ? "basket__active basket-icon" : "basket-icon"} />
+            <BsBasket2 onClick={(e) => addBasket(e, product, setBasket, user, firestore, setError)} className={basket ? "basket__active basket-icon" : "basket-icon"} />
             <p className="product__price">{product.product.price} грн</p>
             <span className="product__place-data">
               <p>{product.product.categori}</p>

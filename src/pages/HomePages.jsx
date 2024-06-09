@@ -36,7 +36,6 @@ export default function HomePages() {
     filterProducts = filterProducts.filter(product =>
       product.product.price <= parseInt(maxPrice)
     );
-    console.log(filterProducts);
   };
 
   if (minPrice) {

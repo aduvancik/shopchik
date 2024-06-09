@@ -55,7 +55,7 @@ export default function ProfilePages() {
 
       fetchUserData();
     }
-  }, [user, firestore,file]);
+  }, [user, firestore, file]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -173,10 +173,13 @@ export default function ProfilePages() {
             {products.length > 0 ? (
               <ul className="productsList__products">
                 {products.map((product) => (
-                  <Product
-                    key={product.id}
-                    product={product}
-                  />
+                  <div>
+                    <button>видалити</button>
+                    <Product
+                      key={product.id}
+                      product={product}
+                    />
+                  </div>
                 ))}
               </ul>
             ) : (
