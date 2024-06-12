@@ -15,6 +15,7 @@ export default function Messages({ chat, setCombinedId }) {
   const combinedId = chat?.chatId;
 
   setCombinedId(combinedId);
+  console.log(chat);
 
   useEffect(() => {
     if (!combinedId) return;
@@ -70,8 +71,8 @@ export default function Messages({ chat, setCombinedId }) {
         <div className="messages__info">
           {recipient && (
             <>
-              <img src={recipient.photo} alt="avatar" />
-              <p>{recipient.name}</p>
+              <img src={chat.photoURL} alt="avatar" />
+              <p>{chat.displayName}</p>
             </>
           )}
         </div>

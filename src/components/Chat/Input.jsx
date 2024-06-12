@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 //firebase
 import { Timestamp, arrayUnion, doc, updateDoc } from 'firebase/firestore';
@@ -8,10 +8,15 @@ import { MdAddPhotoAlternate } from 'react-icons/md';
 import { IoSend } from "react-icons/io5";
 //style
 import '../../styles/chat/input.scss';
+import { Context } from '../..';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Input({ currentUserUid, combinedId, db, storage, userUid, chat }) {
     const [text, setText] = useState("");
     const [img, setImg] = useState(null);
+    const { auth } = useContext(Context);
+    const [user] = useAuthState(auth);
+    console.log(user.uid);
 
     const handleSend = async () => {
         if (!text.trim() && !img) return;

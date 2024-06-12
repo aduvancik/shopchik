@@ -31,7 +31,6 @@ export default function ChatPages() {
         : `${userUid}_${currentUserUid}`;
 
       setCombinedId(combinedId);
-
       try {
         const chatDoc = await getDoc(doc(db, "chats", combinedId));
 
@@ -91,6 +90,7 @@ export default function ChatPages() {
     initializeChat(userUid);
   }, [currentUserUid, userUid, product, db, user?.displayName, user?.photoURL]);
 
+  console.log(user.uid,"uid");
 
   return (
     <div className='chat'>
