@@ -8,7 +8,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://ltdfoto.ru/image/O0q0aZ" width="800" height="400&quot;/">
+<img src="(https://raw.githubusercontent.com/aduvancik/aduvancik/be6ab6ec02acf9f32fc53944a5f9ade02e3e185e/Знімок екрана 2024-06-14 о 13.32.44.png)" width="800" height="400&quot;/">
 
   
   
