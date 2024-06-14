@@ -11,7 +11,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://krivogub-oleg.imgbb.com/" width="800" height="400&quot;/">
+<img src="https://ltdfoto.ru/image/O0q0aZ" width="800" height="400&quot;/">
 
   
   
