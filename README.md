@@ -22,7 +22,7 @@
 <p>1. Clone the repository</p>
 
 ```
-git clone repo_url
+git clone https://github.com/aduvancik/shopchik.git
 ```
 
 <p>2. Install npm modules</p>
