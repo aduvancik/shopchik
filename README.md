@@ -48,11 +48,6 @@ npm build
 npm start
 ```
 
-<h2>🍰 Contribution Guidelines:</h2>
-
-Please contribute using [GitHub Flow](https://guides.github.com/introduction/flow/). Create a branch add commits and open a pull request.
-
-  
   
 <h2>💻 Built with</h2>
 
