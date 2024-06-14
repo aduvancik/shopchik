@@ -58,7 +58,7 @@ Please contribute using [GitHub Flow](https://guides.github.com/introduction/flo
 
 Technologies used in the project:
 
-*  [Firebase](https://firebase.com/) 
+*  [Firebase](https://firebase.com/) - for database, auth, storage
 *  [react-icons](https://www.npmjs.com/package/react-icons)  - For icons used in different sections
 
 
