@@ -70,7 +70,7 @@ export default function Salesman({ product }) {
       <h1 className='salesMan__data'> контактна персона: {product.product.contactPerson}</h1>
       <div className='salesMan__container-button'>
         {
-          !(user.uid === product.uidUser) &&
+          !(user?.uid === product.uidUser) &&
           <button type='salesMan__button_message button' className='button salesMan__button_send' onClick={handleNavigateToChat}>Повідомлення</button>
         }
         <button className='salesMan__button_tel button' onClick={() => setPhone(product.product.telephone)}>{phone}</button>

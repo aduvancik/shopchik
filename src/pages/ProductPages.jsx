@@ -20,7 +20,7 @@ export default function ProductPages() {
   const [basketCount, setBasketCount] = useState(0);
 
   useEffect(() => {
-    if (!product || !user) return;
+    if (!product || !user || !user.uid) return;
 
     const productRef = firestore.collection("products").doc(product.uid);
 
