@@ -40,13 +40,13 @@ git clone repo_url
 <p>2. Install npm modules</p>
 
 ```
-yarn install
+npm install
 ```
 
 <p>3. Start development server using below command</p>
 
 ```
-yarn dev
+npm dev
 ```
 **Note:** For running authentication using auth0 service create a `.env.local` file and add changes as per official article:-
 <a href="https://auth0.com/docs/quickstart/webapp/nextjs/01-login#configure-the-sdk">Auth0 Next.js Quick Start</a>
@@ -54,13 +54,13 @@ yarn dev
 <p>4. Create production build using below command</p>
 
 ```
-yarn build
+npm build
 ```
 
 <p>5. Check production build locally using below command</p>
 
 ```
-yarn start
+npm start
 ```
 
 <h2>🍰 Contribution Guidelines:</h2>
