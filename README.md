@@ -2,9 +2,6 @@
 
 <p>The online platform for selling animals is a platform where you can sell or buy a pet</a></p>
 
-
-
-
 <h2>🚀 Demo</h2>
 
 [https://shopchik-3c85d.web.app/](https://shopchik-3c85d.web.app/)
@@ -15,15 +12,9 @@
 
   
   
-<h2>🧐 Features</h2>
+<h2>🧐 about project</h2>
 
-Here're some of the project's best features:
-
-*   Easy to Use
-*   Simple Form based inputs for adding README sections
-*   Markdown editor for further customisation
-*   Code preview section for markdown
-*   Copy Markdown code in a single click
+<p>here you can view ads, filter by name, price and category, or log in and post ads yourself, add them to the cart, and correspond with the seller</p>
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -44,8 +35,6 @@ npm install
 ```
 npm dev
 ```
-**Note:** For running authentication using auth0 service create a `.env.local` file and add changes as per official article:-
-<a href="https://auth0.com/docs/quickstart/webapp/nextjs/01-login#configure-the-sdk">Auth0 Next.js Quick Start</a>
 
 <p>4. Create production build using below command</p>
 
@@ -69,15 +58,8 @@ Please contribute using [GitHub Flow](https://guides.github.com/introduction/flo
 
 Technologies used in the project:
 
-*  [Next.js](https://nextjs.org/) 
-*  [TailwindCSS](https://tailwindcss.com/)  
-*  [Auth0 for user authentication](https://auth0.com/docs/quickstart/webapp/nextjs) 
-*  [react-collapsible](https://www.npmjs.com/package/react-collapsible)  - For collapsible menu items
+*  [Firebase](https://firebase.com/) 
 *  [react-icons](https://www.npmjs.com/package/react-icons)  - For icons used in different sections
-*  [react-markdown](https://www.npmjs.com/package/react-markdown)  - For markdown preview
-*  [react-tagsinput](https://www.npmjs.com/package/react-tagsinput)  - For taking multiple input items at once
-*  [react-toastify](https://www.npmjs.com/package/react-toastify)  - For toast notification
-*  [turndown](https://www.npmjs.com/package/turndown)  - For HTML to markdown conversion
 
 
 <h2>💖Like my work</h2>
