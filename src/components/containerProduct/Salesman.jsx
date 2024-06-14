@@ -51,7 +51,6 @@ export default function Salesman({ product }) {
       state: { product },
     });
   };
-
   return (
     <div className='salesMan'>
       {error && <Modal setError={setError} text="Щось пішло не так, можливо ви не ввійшли" />}
@@ -70,7 +69,10 @@ export default function Salesman({ product }) {
       <p className='salesMan__price'>{product.product.price} грн.</p>
       <h1 className='salesMan__data'> контактна персона: {product.product.contactPerson}</h1>
       <div className='salesMan__container-button'>
-        <button type='salesMan__button_message button' className='button salesMan__button_send' onClick={handleNavigateToChat}>Повідомлення</button>
+        {
+          !(user.uid === product.uidUser) &&
+          <button type='salesMan__button_message button' className='button salesMan__button_send' onClick={handleNavigateToChat}>Повідомлення</button>
+        }
         <button className='salesMan__button_tel button' onClick={() => setPhone(product.product.telephone)}>{phone}</button>
       </div>
     </div>

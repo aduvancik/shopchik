@@ -40,6 +40,7 @@ export default function ProductPages() {
           setBasketCount(baskets.length);
         } else {
           setError(true);
+
         }
       } catch (error) {
         setError(true);

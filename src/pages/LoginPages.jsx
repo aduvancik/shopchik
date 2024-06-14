@@ -10,35 +10,6 @@ export function Login() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 530);
   const photo = ["bird2.jpeg", "birds.jpeg", "cat.jpeg", "dog.jpeg", "pexels.jpeg", "sova.jpeg", "tiger.jpeg"];
 
-  // tracks if FirebaseUI has been initialized
-  // const firebaseUIInitialized = useRef(false);
-
-  // useEffect(() => {
-  //   const handleResize = () => setIsMobile(window.innerWidth < 530);
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!firebaseUIInitialized.current) {
-  //     const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
-  //     const uiConfig = {
-  //       signInOptions: [
-  //         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  //         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //       ],
-  //       callbacks: {
-  //         signInSuccessWithAuthResult: (authResult) => {
-  //           return false;
-  //         },
-  //       },
-  //       privacyPolicyUrl: "https://kaartopia.nl/privacy",
-  //       tosUrl: "https://kaartopia.nl/voorwaarden",
-  //     };
-  //     ui.start('#firebaseui-auth-container', uiConfig);
-  //     firebaseUIInitialized.current = true;
-  //   }
-  // }, [auth]);
 
   const login = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();

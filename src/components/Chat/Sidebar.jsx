@@ -46,7 +46,6 @@ export default function Sidebar({ setChat, setSelectedChat, currentUserUid, sele
     setSelectedChat(chat);
     setChat(true);
 
-    // Load the chat data for the selected chat
     getDoc(doc(db, "chats", combinedId)).then(chatDoc => {
       if (chatDoc.exists()) {
         setChat(chatDoc.data());

@@ -66,7 +66,7 @@ export default function Header() {
             await firestore.collection("carts").doc(user.uid).update({
                 products: firebase.firestore.FieldValue.arrayRemove(productId)
             });
-            // Оновлюємо список продуктів у корзині після видалення
+
             const updatedCartDoc = await firestore.collection("carts").doc(user.uid).get();
             const updatedCartData = updatedCartDoc.data();
             const updatedProducts = await Promise.all(updatedCartData.products.map(async (productId) => {

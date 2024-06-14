@@ -5,13 +5,14 @@
     &__container {
         display: flex;
         height: 100%;
+
     }
 
     &__messagesInput {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 100%;
+        width: 70%;
     }
 }
 

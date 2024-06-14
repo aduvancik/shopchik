@@ -71,7 +71,7 @@ export default function AddProduct() {
   const handlePublish = async (event) => {
     event.preventDefault();
     let hasEmptyValues = false;
-    //перевірка чи всі дані заповнені
+
     Object.entries(productData).forEach(([key, value]) => {
       if (key !== 'view' && key !== 'basket' && (value === "" || (Array.isArray(value) && value.length === 0))) {
         hasEmptyValues = true;
@@ -87,7 +87,7 @@ export default function AddProduct() {
 
       try {
         setLoading(true);
-        // Завантажуємо всі фотографії
+
         await Promise.all(arrPhoto.map(async (photo) => {
           const photoRef = ref(storage, `photos/${uuidv4()}`);
           await uploadBytesResumable(photoRef, photo);
@@ -95,7 +95,7 @@ export default function AddProduct() {
           photoURLs.push(downloadURL);
         }));
 
-        // Додаємо продукт до firestore
+
         const uid = uuidv4();
         await firestore.collection("products").doc(uid).set({
           uid: uid,
@@ -125,7 +125,6 @@ export default function AddProduct() {
           createdAt: firebase.firestore.Timestamp.now()
         });
 
-        // Переходимо на домашню сторінку
         navigate(HOME_ROUTE);
         setLoading(false);
       } catch (error) {

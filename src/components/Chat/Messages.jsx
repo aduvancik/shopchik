@@ -15,7 +15,6 @@ export default function Messages({ chat, setCombinedId }) {
   const combinedId = chat?.chatId;
 
   setCombinedId(combinedId);
-  console.log(chat);
 
   useEffect(() => {
     if (!combinedId) return;
@@ -45,7 +44,6 @@ export default function Messages({ chat, setCombinedId }) {
     }
   }, [chat]);
 
-  // Прокрутка вниз при зміні повідомлень
   const scrollToBottom = useCallback(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +54,6 @@ export default function Messages({ chat, setCombinedId }) {
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
-  // Прокрутка вниз після завантаження зображення
   const handleImageLoad = () => {
     scrollToBottom();
   };

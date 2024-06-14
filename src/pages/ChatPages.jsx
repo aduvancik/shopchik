@@ -90,7 +90,6 @@ export default function ChatPages() {
     initializeChat(userUid);
   }, [currentUserUid, userUid, product, db, user?.displayName, user?.photoURL]);
 
-  console.log(user.uid,"uid");
 
   return (
     <div className='chat'>

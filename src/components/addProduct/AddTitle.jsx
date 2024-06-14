@@ -34,11 +34,9 @@ export default function AddTitle(props) {
     }
   }
 
-  //price
 
   const handlePrice = (e) => {
     let value = e.target.value;
-    // Перевіряємо, чи містить значення будь-які символи, крім крапки та цифр
     if (/[^\d.]/.test(value)) {
       setPrice('');
     } else {
@@ -50,7 +48,7 @@ export default function AddTitle(props) {
       setPrice(value);
       setProductData(prevData => ({
         ...prevData,
-        price: value // Використовуйте актуальне значення value
+        price: value 
       }));
     }
   };

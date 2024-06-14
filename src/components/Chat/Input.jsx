@@ -8,15 +8,10 @@ import { MdAddPhotoAlternate } from 'react-icons/md';
 import { IoSend } from "react-icons/io5";
 //style
 import '../../styles/chat/input.scss';
-import { Context } from '../..';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Input({ currentUserUid, combinedId, db, storage, userUid, chat }) {
     const [text, setText] = useState("");
     const [img, setImg] = useState(null);
-    const { auth } = useContext(Context);
-    const [user] = useAuthState(auth);
-    console.log(user.uid);
 
     const handleSend = async () => {
         if (!text.trim() && !img) return;
@@ -65,7 +60,6 @@ export default function Input({ currentUserUid, combinedId, db, storage, userUid
 
     return (
         <div className="inputComponent">
-            <p className='red'>{userUid}</p>
             <input
                 type="text"
                 placeholder="Type something..."
